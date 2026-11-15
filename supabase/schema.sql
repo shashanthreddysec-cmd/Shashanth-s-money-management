@@ -7,6 +7,15 @@ create table if not exists public.money_data (
 alter table public.money_data enable row level security;
 
 alter table public.money_data drop constraint if exists money_data_user_id_fkey;
+do $$
+declare policy_name text;
+begin
+  for policy_name in
+    select policyname from pg_policies where schemaname = 'public' and tablename = 'money_data'
+  loop
+    execute format('drop policy if exists %I on public.money_data', policy_name);
+  end loop;
+end $$;
 drop policy if exists "Users can read their own money data" on public.money_data;
 drop policy if exists "Users can insert their own money data" on public.money_data;
 drop policy if exists "Users can update their own money data" on public.money_data;

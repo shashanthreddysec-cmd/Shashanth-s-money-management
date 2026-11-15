@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090d1b"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090d1b"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" type="image/png" href="assets/money-logo.png"><link rel="apple-touch-icon" href="assets/money-logo.png">
 <title>Shashanth Reddy — Money Management</title>
 <style>
 :root{--bg:#090d1b;--panel:#141a2d;--panel2:#1a2138;--line:#29314c;--text:#f4f6ff;--muted:#9aa6c8;--purple:#8068ff;--green:#32d6a0;--red:#ff647c;--amber:#ffc15c;--blue:#62a6ff}
@@ -76,6 +76,8 @@ tbody tr[data-act="view"]:hover td:first-child{box-shadow:inset 3px 0 0 var(--pu
 .rc-actions .rc-del{background:#fdeaea;color:#c8384f;box-shadow:inset 0 0 0 1px #f2ccd1}
 .rc-actions .rc-close{background:#eee8db;color:#3c3a33}
 .rc-actions .rc-refund{background:#fff4e0;color:#a86b00;box-shadow:inset 0 0 0 1px #f0d9a8}
+/* Brand mark */
+.brand-logo{width:30px;height:30px;object-fit:contain;vertical-align:middle;margin-right:7px;filter:invert(1);border-radius:8px}
 /* Mobile app shell */
 html{background:var(--bg);scroll-behavior:smooth}
 body{overscroll-behavior-y:none;padding-bottom:env(safe-area-inset-bottom)}
@@ -112,7 +114,7 @@ button,input,select,textarea{touch-action:manipulation}
 <body>
 <div class="app">
 <aside class="side">
-<div class="brand">◈ Shashanth Reddy<span>.</span><small>MONEY MANAGEMENT</small></div>
+<div class="brand"><img class="brand-logo" src="assets/money-logo.png" alt="">Shashanth Reddy<span>.</span><small>MONEY MANAGEMENT</small></div>
 <button class="nav active" data-page="dashboard">▦ &nbsp; Overview</button>
 <button class="nav" data-page="transactions">▤ &nbsp; Transactions</button>
 <button class="nav" data-page="people">♙ &nbsp; People Owe Me</button>

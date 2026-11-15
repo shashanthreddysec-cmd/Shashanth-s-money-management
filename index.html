@@ -1,0 +1,2025 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090d1b"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Shashanth Reddy — Money Management</title>
+<style>
+:root{--bg:#090d1b;--panel:#141a2d;--panel2:#1a2138;--line:#29314c;--text:#f4f6ff;--muted:#9aa6c8;--purple:#8068ff;--green:#32d6a0;--red:#ff647c;--amber:#ffc15c;--blue:#62a6ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#20234b 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;color:inherit}.app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}.side{background:#10162a;border-right:1px solid var(--line);padding:25px 16px;display:flex;flex-direction:column;gap:9px}.brand{font-size:18px;font-weight:750;margin:4px 10px 22px;letter-spacing:-.4px;line-height:1.3}.brand span{color:var(--purple)}.brand small{display:block;font-size:10.5px;font-weight:650;color:var(--muted);letter-spacing:.6px;margin-top:4px}.nav{padding:13px 14px;border-radius:13px;background:transparent;color:var(--muted);text-align:left}.nav.active,.nav:hover{background:#342b75;color:white}.sidefoot{margin-top:auto;color:var(--muted);font-size:12px;padding:12px}.main{padding:30px;max-width:1600px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;gap:12px}.top h1{font-size:28px;margin:0}.muted{color:var(--muted)}.small{font-size:12px}.btn{padding:10px 14px;border-radius:11px;background:#292f4a;border:1px solid var(--line)}.btn.primary{background:linear-gradient(120deg,#6856ed,#8a62ff);border:0}.btn.green{background:#124b43;color:#8af1cc}.btn.red{background:#512636;color:#ff9baa}.grid{display:grid;gap:16px}
+.hero-grid{grid-template-columns:2fr 1fr 1fr 1fr}
+@media(max-width:1250px){.hero-grid{grid-template-columns:1fr 1fr}.hero-grid .balance{grid-column:1/-1}}
+@media(max-width:720px){.hero-grid{grid-template-columns:1fr}.hero-grid .balance{grid-column:auto}}
+
+.stats{grid-template-columns:repeat(4,1fr);margin:16px 0}.card{background:linear-gradient(145deg,rgba(25,32,54,.97),rgba(17,23,41,.97));border:1px solid var(--line);border-radius:18px;padding:19px;min-width:0;box-shadow:0 12px 35px #0002}.label{color:var(--muted);font-size:13px}.amount{font-size:30px;font-weight:750;letter-spacing:-1px;margin:5px 0}.green-t{color:var(--green)}.red-t{color:var(--red)}.purple-t{color:#b3a4ff}.stat .amount{font-size:23px}.split{grid-template-columns:1fr 1fr;margin-top:16px}.bottom{grid-template-columns:1fr 1.25fr .8fr;margin-top:16px}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.section-title h2{font-size:18px;margin:0}.person-row,.tx-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.person-row:last-child,.tx-row:last-child{border:0}.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#40347c;color:#d9d0ff;font-weight:700}.grow{flex:1;min-width:0}.right{text-align:right}.pill{font-size:11px;border-radius:30px;padding:5px 9px;background:#3b3041;color:#ffd08a}.quick{display:grid;gap:9px}.quick button{padding:12px;border-radius:12px;background:#242b49;text-align:left}.quick button:hover{background:#39326e}.page{display:none}.page.active{display:block}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;background:#0d1426;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--text);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--purple)}textarea{min-height:75px;resize:vertical}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:620px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:12px;font-weight:600}td{font-size:14px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.tabs button{padding:9px 12px;border-radius:10px;background:#1c2440;color:var(--muted)}.tabs button.active{background:#40357f;color:white}.bar{height:9px;background:#29314c;border-radius:20px;overflow:hidden;margin-top:7px}.bar span{display:block;height:100%;background:linear-gradient(90deg,#7662ff,#3ad6ae)}.empty{color:var(--muted);padding:20px;text-align:center}.modal{position:fixed;inset:0;background:#050814c9;display:none;place-items:center;padding:16px;z-index:5}.modal.show{display:grid}.modalbox{width:min(600px,100%);max-height:90vh;overflow:auto;background:#151c30;border:1px solid var(--line);border-radius:18px;padding:22px}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.modalhead h2{margin:0}.close{background:transparent;color:var(--muted);font-size:23px}.hint{color:var(--muted);font-size:12px;margin-top:8px}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:15px}.toolbar input,.toolbar select{max-width:220px}.danger-link{color:#ff8c9c;background:none;padding:5px}.chartbars{display:flex;align-items:end;gap:12px;height:170px;padding-top:15px}.chartcol{flex:1;text-align:center;font-size:11px;color:var(--muted)}.chartbar{background:linear-gradient(#8c76ff,#4e42a4);border-radius:7px 7px 0 0;min-height:3px;margin:0 auto 7px;width:min(34px,70%)}@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.bottom{grid-template-columns:1fr 1fr}.bottom .card:last-child{grid-column:1/-1}}@media(max-width:720px){.app{display:block}.side{position:sticky;top:0;z-index:3;display:flex;flex-direction:row;overflow:auto;padding:10px;background:#10162af2}.brand{display:none}.nav{white-space:nowrap;padding:10px 12px}.sidefoot{display:none}.main{padding:18px 13px}.top h1{font-size:22px}.split,.bottom{grid-template-columns:1fr}.bottom .card:last-child{grid-column:auto}.stats{gap:9px}.card{padding:15px}.stat .amount{font-size:20px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+button,.pill,.avatar,.tx-row,.person-row{transition:transform .2s cubic-bezier(.4,0,.2,1),background .2s ease,box-shadow .2s ease,color .2s ease}
+button:not(.close):not(.icon-btn):hover{transform:translateY(-1px);box-shadow:0 6px 18px #0004}
+button:not(.close):not(.icon-btn):active{transform:translateY(0) scale(.96)}
+.btn.primary:hover{box-shadow:0 8px 22px #6a4bff55}
+.nav:hover{transform:translateX(2px)}
+.icon-btn{background:transparent;padding:6px 8px;border-radius:9px;color:var(--muted);font-size:14px;line-height:1}
+.icon-btn:hover{background:#242b49;color:var(--text);transform:scale(1.1)}
+.icon-btn.danger:hover{background:#512636;color:#ff9baa}
+.person-row:hover,.tx-row:hover{background:#ffffff08;border-radius:10px}
+.page.active{animation:pageIn .32s cubic-bezier(.2,.8,.2,1)}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.modalbox{animation:modalIn .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes modalIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+.modal{transition:background .2s ease}
+.src-pill{font-size:10px;border-radius:30px;padding:3px 8px;margin-left:7px;background:#1d3a52;color:#8fd0ff}
+.src-pill.org{background:#1d3a2b;color:#8ff0b0}
+.stat-clickable{cursor:pointer;transition:transform .2s, box-shadow .2s}
+.stat-clickable:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,0.3)}
+.cat-clickable{cursor:pointer; transition: transform .2s, opacity .2s;}
+.cat-clickable:hover{transform: translateX(4px); opacity: 0.8;}
+.category-chart-title{flex-wrap:wrap;gap:8px}
+.category-period-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.category-reset{background:#292f4a;border:1px solid var(--line);border-radius:8px;padding:4px 8px;font-size:11px}
+.chartcol{background:transparent;border:1px solid transparent;border-radius:10px;padding:8px 2px 6px;min-width:0}
+.chartcol:hover{background:#ffffff08}
+.chartcol[aria-pressed="true"]{background:#8068ff22;border-color:var(--purple);color:var(--text)}
+.chartcol:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+.chartbar{display:block}
+.chart-month-total{display:block}
+.tx-stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.category-split-controls{display:flex;gap:8px}.category-split-controls select{flex:1.5;min-width:0}.category-split-controls input{flex:1;min-width:0}.split-cat-person-wrap{margin-top:8px}.split-cat-person-wrap label{color:var(--muted);font-size:12px}
+.cloud-card{margin:0 0 16px}.cloud-fields{display:flex;gap:8px;flex-wrap:wrap}.cloud-fields input{flex:1;min-width:180px}.cloud-fields button{white-space:nowrap}
+
+.tx-row[data-act="view"],tbody tr[data-act="view"]{cursor:pointer}
+tbody tr[data-act="view"]:hover{background:#ffffff0a}
+tbody tr[data-act="view"]:hover td:first-child{box-shadow:inset 3px 0 0 var(--purple)}
+
+#receiptModal .receipt-wrap{width:min(430px,100%)}
+#receiptModal .receipt{width:100%;max-height:84vh;overflow-y:auto;background:#fbf8f1;color:#1c2130;border-radius:10px 10px 0 0;padding:26px 24px 26px;box-shadow:0 24px 60px #000a;font:14px/1.5 Inter,ui-sans-serif,system-ui,sans-serif;animation:modalIn .28s cubic-bezier(.2,.8,.2,1);scrollbar-width:thin}
+#receiptModal .receipt::-webkit-scrollbar{width:8px}
+#receiptModal .receipt::-webkit-scrollbar-thumb{background:#d9d1bf;border-radius:8px}
+#receiptModal .receipt-zig{height:10px;background:radial-gradient(circle at 5px 0,#fbf8f1 5px,transparent 5.5px) repeat-x;background-size:10px 10px}
+.rc-top{text-align:center}
+.rc-brand{font-size:10px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:#a39a86}
+.rc-type{display:inline-block;margin-top:12px;font-size:10.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:6px 11px;border-radius:20px;background:#efe9db;color:#6d6552}
+.rc-title{font-size:19px;font-weight:750;line-height:1.3;margin:14px 0 2px;color:#141926;word-break:break-word}
+.rc-amt{font:700 34px/1.1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-1.2px;margin:8px 0 2px}
+.rc-amt.rc-in{color:#0d9b73}.rc-amt.rc-out{color:#c8384f}.rc-amt.rc-neutral{color:#5a6478}
+.rc-sub{font-size:12px;color:#8c8577}
+.rc-dash{border-top:1px dashed #d3cab6;margin:16px 0}
+.rc-items-title{font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#a39a86;margin-bottom:4px}
+.rc-item{display:flex;align-items:baseline;font-size:12.5px;padding:4px 0;color:#2a3040}
+.rc-item .rc-dots{flex:1;border-bottom:1px dotted #c9c0ab;margin:0 8px;transform:translateY(-3px)}
+.rc-row{display:flex;justify-content:space-between;gap:14px;font-size:12.5px;padding:5px 0}
+.rc-row .k{color:#8c8577;white-space:nowrap}
+.rc-row .v{color:#1c2130;font-weight:650;text-align:right;word-break:break-word}
+.rc-foot{font-size:11px;color:#a89f8c;text-align:center;line-height:1.6;letter-spacing:.4px}
+.rc-actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.rc-actions button{flex:1 1 auto;min-width:78px;padding:11px 8px;border-radius:10px;font-size:12.5px;font-weight:700;background:#20242e;color:#fff}
+.rc-actions .rc-edit{background:#5a49e8}
+.rc-actions .rc-del{background:#fdeaea;color:#c8384f;box-shadow:inset 0 0 0 1px #f2ccd1}
+.rc-actions .rc-close{background:#eee8db;color:#3c3a33}
+.rc-actions .rc-refund{background:#fff4e0;color:#a86b00;box-shadow:inset 0 0 0 1px #f0d9a8}
+/* Mobile app shell */
+html{background:var(--bg);scroll-behavior:smooth}
+body{overscroll-behavior-y:none;padding-bottom:env(safe-area-inset-bottom)}
+button,input,select,textarea{touch-action:manipulation}
+@media(max-width:720px){
+  .app{display:block;min-height:100dvh}
+  .side{position:fixed;left:0;right:0;bottom:0;top:auto;height:auto;min-height:64px;z-index:20;display:flex;flex-direction:row;align-items:stretch;justify-content:space-around;gap:2px;padding:7px 8px calc(7px + env(safe-area-inset-bottom));background:rgba(16,22,42,.94);backdrop-filter:blur(18px);border-top:1px solid #394263;border-right:0;box-shadow:0 -12px 35px #0006}
+  .brand,.sidefoot{display:none}
+  .nav{flex:1;min-width:0;padding:8px 4px 7px;border-radius:11px;text-align:center;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:44px}
+  .nav.active,.nav:hover{transform:none}
+  .main{padding:calc(18px + env(safe-area-inset-top)) 13px calc(86px + env(safe-area-inset-bottom));max-width:none}
+  .top{position:relative;margin-bottom:18px;align-items:flex-start}
+  .top h1{font-size:23px;line-height:1.15;letter-spacing:-.4px}
+  .top .btn{min-height:44px;padding:10px 11px}
+  .card{border-radius:17px;padding:16px;box-shadow:0 8px 25px #0003}
+  .amount{font-size:28px}
+  .btn,.quick button{min-height:44px}
+  .toolbar{display:grid;grid-template-columns:1fr 1fr}
+  .toolbar input,.toolbar select{max-width:none}
+  .toolbar input:first-child{grid-column:1/-1}
+  table{min-width:680px}
+  .modal{align-items:end;padding:0;background:#050814d9}
+  .modalbox{width:100%;max-height:min(92dvh,900px);border-radius:22px 22px 0 0;padding:18px 16px calc(20px + env(safe-area-inset-bottom));border-bottom:0;animation:sheetIn .28s cubic-bezier(.2,.8,.2,1)}
+  .modalhead{position:sticky;top:-18px;background:#151c30;padding:4px 0 14px;z-index:1}
+  .formgrid{gap:11px}
+  input,select,textarea{min-height:44px}
+  .actions{position:sticky;bottom:calc(-20px - env(safe-area-inset-bottom));margin:14px -16px -20px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#151c30;border-top:1px solid var(--line);z-index:2}
+  .actions .btn{flex:1}
+  .chartbars{height:155px;gap:5px}
+  .chartcol{padding-left:0;padding-right:0}
+}
+@keyframes sheetIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+</style></head>
+<body>
+<div class="app">
+<aside class="side">
+<div class="brand">◈ Shashanth Reddy<span>.</span><small>MONEY MANAGEMENT</small></div>
+<button class="nav active" data-page="dashboard">▦ &nbsp; Overview</button>
+<button class="nav" data-page="transactions">▤ &nbsp; Transactions</button>
+<button class="nav" data-page="people">♙ &nbsp; People Owe Me</button>
+<button class="nav" data-page="accounts">▣ &nbsp; Accounts</button>
+<button class="nav" data-page="analytics">▥ &nbsp; Analytics</button>
+<div class="sidefoot">Private by default · Stored on this device</div>
+</aside>
+<main class="main">
+<header class="top"><div><div class="muted small">PERSONAL FINANCE</div><h1 id="pageTitle">Your money, clearly.</h1></div><button class="btn" id="exportBtn">↓ Export CSV</button></header>
+<section class="card cloud-card" id="cloudAuth" aria-label="Cloud sync">
+  <div class="section-title"><div><h2>Cloud sync</h2><div class="muted small" id="cloudStatus">Sign in to use this data on every device.</div></div><span id="cloudUser" class="pill" hidden></span></div>
+  <div class="cloud-fields" id="cloudFields"><input id="cloudEmail" type="email" placeholder="Email address" autocomplete="email"><input id="cloudPassword" type="password" placeholder="Password" autocomplete="current-password"><button class="btn primary" id="cloudSignIn">Sign in</button><button class="btn" id="cloudSignUp">Create account</button></div>
+  <div class="actions" id="cloudSignedIn" hidden><button class="btn" id="cloudSyncNow">Sync now</button><button class="btn red" id="cloudSignOut">Sign out</button></div>
+</section>
+
+<section class="page active" id="dashboard">
+<div class="grid hero-grid">
+<div class="card balance"><div class="label">TOTAL AVAILABLE MONEY</div><div class="amount" id="totalBalance">₹0</div><div class="muted small">Bank + UPI Lite + cash balances</div><div class="actions"><button class="btn primary" data-open="expense">− Add expense</button><button class="btn green" data-open="income">＋ Add money</button><button class="btn" data-open="lent">↗ Lend money</button></div></div>
+<div class="card"><div class="label">Bank account</div><div class="amount" id="bankBalance">₹0</div><div class="muted small">Main account</div></div>
+<div class="card"><div class="label">BHIM UPI Lite</div><div class="amount" id="liteBalance">₹0</div><div class="muted small">Wallet balance</div></div>
+<div class="card"><div class="label">Cash in hand</div><div class="amount" id="cashBalance">₹0</div><div class="muted small">Physical cash</div></div>
+</div>
+<div class="grid stats">
+<div class="card stat stat-clickable" data-filter="expense">
+    <div class="label">Personal spending</div>
+    <div class="amount red-t" id="personalSpent">₹0</div>
+    <div class="small muted">Expenses recorded ↗</div>
+</div>
+<div class="card stat stat-clickable" data-page="people">
+    <div class="label">People owe you</div>
+    <div class="amount green-t" id="owedTotal">₹0</div>
+    <div class="small muted">Outstanding amount ↗</div>
+</div>
+<div class="card stat stat-clickable" data-filter="debit">
+    <div class="label">Total money debited</div>
+    <div class="amount purple-t" id="totalDebited">₹0</div>
+    <div class="small muted">Personal + lent ↗</div>
+</div>
+<div class="card stat stat-clickable" data-filter="credit">
+    <div class="label">Money received</div>
+    <div class="amount green-t" id="incomeTotal">₹0</div>
+    <div class="small muted">Income & repayments ↗</div>
+</div>
+</div>
+<div class="grid split">
+<div class="card"><div class="section-title"><h2>People who owe you</h2><button class="btn" data-goto="people">View all →</button></div><div id="dashboardPeople"></div></div>
+<div class="card"><div class="section-title"><h2>Recent transactions</h2><button class="btn" data-goto="transactions">View all →</button></div><div id="recentTx"></div></div>
+</div>
+<div class="grid bottom">
+<div class="card"><div class="section-title category-chart-title"><h2>Spending by category</h2><div class="category-period-controls"><span class="muted small" id="categoryPeriod">All months</span><button type="button" class="category-reset" data-act="clear-month" id="clearChartMonth" hidden>All months</button></div></div><div id="categoryBreakdown" aria-live="polite"></div></div>
+<div class="card"><div class="section-title"><h2>Money movement</h2><span class="muted small">Recent months</span></div><div class="chartbars" id="moneyChart"></div></div>
+<div class="card"><div class="section-title"><h2>Quick actions</h2></div><div class="quick"><button data-open="expense">＋ &nbsp; Add personal expense</button><button data-open="income">↙ &nbsp; Add income</button><button data-open="lent">♙ &nbsp; Lend money to someone</button><button data-open="refund">↩ &nbsp; Record a refund</button><button data-open="transfer">⇄ &nbsp; Transfer accounts</button></div></div>
+</div>
+<div class="grid" style="margin-top:16px"><div class="card"><div class="section-title"><h2>Money received by source</h2><span class="muted small">People &amp; organisations</span></div><div id="sourceBreakdown"></div></div></div>
+</section>
+
+<section class="page" id="transactions">
+    <div id="activeFilterBanner" class="card" style="display:none; margin-bottom: 16px; padding: 12px 18px; border-color: var(--purple); background: linear-gradient(90deg, #1a2138, #1d2545);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>Showing transactions for Category: <b id="activeCatName" style="color:var(--purple)"></b></div>
+            <button class="btn red" id="clearCatFilter" style="padding: 6px 12px; font-size: 12px;">Clear Filter ✕</button>
+        </div>
+    </div>
+
+    <div class="card" id="txStatsContainer" style="display:none; margin-bottom:16px;">
+        <div class="section-title">
+            <h2 id="txStatsTitle">Breakdown</h2>
+            <span class="muted small" id="txStatsTotal">Total: ₹0</span>
+        </div>
+        <div id="txStatsBars" class="tx-stats-grid"></div>
+    </div>
+
+    <div class="card">
+        <div class="section-title"><h2>All transactions</h2><button class="btn primary" data-open="expense">＋ Add transaction</button></div>
+        
+        <div class="toolbar">
+            <input id="txSearch" placeholder="Search title, notes, person…">
+            <select id="txType">
+                <option value="">All types</option>
+                <option value="expense">Personal expense</option>
+                <option value="income">Money received</option>
+                <option value="lent">Money lent</option>
+                <option value="repayment">Repayment received</option>
+                <option value="refund">Refund</option>
+                <option value="transfer">Transfer</option>
+                <option value="debit">All Debits (Expense + Lent)</option>
+                <option value="credit">All Credits (Income + Repay + Refund)</option>
+            </select>
+            <input type="date" id="txFrom">
+            <input type="date" id="txTo">
+        </div>
+        <div class="tablewrap"><table><thead><tr><th>Date</th><th>Details</th><th>Category / person</th><th>Account</th><th>Amount</th><th></th></tr></thead><tbody id="txTable"></tbody></table></div>
+    </div>
+</section>
+
+<section class="page" id="people"><div class="card"><div class="section-title"><div><h2>People who owe you</h2><div class="muted small">Each person has a complete purpose-wise lending history.</div></div><button class="btn primary" data-open="lent">＋ Add money lent</button></div><div class="grid stats"><div class="card stat"><div class="label">Total lent</div><div class="amount" id="lentAll">₹0</div></div><div class="card stat"><div class="label">Total returned</div><div class="amount green-t" id="returnedAll">₹0</div></div><div class="card stat"><div class="label">Still owed</div><div class="amount green-t" id="owedAll">₹0</div></div><div class="card stat"><div class="label">People with balance</div><div class="amount" id="peopleCount">0</div></div></div><div id="peopleList"></div></div><div class="card" id="personDetail" style="margin-top:16px;display:none"></div></section>
+
+<section class="page" id="accounts"><div class="grid split"><div class="card"><h2>Account balances</h2><div class="field"><label>Bank opening balance (when you start tracking)</label><input type="number" id="openingBank" min="0" step=".01"></div><div class="field" style="margin-top:12px"><label>BHIM UPI Lite opening balance</label><input type="number" id="openingLite" min="0" step=".01"></div><div class="field" style="margin-top:12px"><label>Cash opening balance (optional)</label><input type="number" id="openingCash" min="0" step=".01"></div><div class="actions"><button class="btn primary" id="saveOpening">Save opening balances</button></div><p class="hint">Opening balances are your starting point. Enter them once, then record every movement. Transfers between your own accounts do not count as spending.</p></div><div class="card"><h2>Account rules</h2><p class="muted">• Bank and UPI Lite are tracked separately.</p><p class="muted">• A bank → UPI Lite transfer reduces one balance and increases the other.</p><p class="muted">• Internal transfers are excluded from total debited and personal spending.</p><p class="muted">• Cash tracking is optional.</p><p class="hint">This tracker does not connect to your bank or BHIM. Balances update from entries you record.</p></div></div></section>
+
+<section class="page" id="analytics"><div class="grid stats"><div class="card stat"><div class="label">Personal expenses</div><div class="amount red-t" id="anExpense">₹0</div></div><div class="card stat"><div class="label">Money lent</div><div class="amount" id="anLent">₹0</div></div><div class="card stat"><div class="label">Total debited</div><div class="amount purple-t" id="anDebit">₹0</div></div><div class="card stat"><div class="label">Outstanding</div><div class="amount green-t" id="anOwed">₹0</div></div></div><div class="grid split"><div class="card"><h2>Category breakdown</h2><div id="anCategories"></div></div><div class="card"><h2>Where your money went</h2><div id="anPeople"></div></div></div></section>
+</main></div>
+
+<div class="modal" id="modal"><div class="modalbox"><div class="modalhead"><h2 id="modalTitle">Add transaction</h2><button class="close" id="closeModal">×</button></div><form id="entryForm"><input type="hidden" name="editId" id="editId" value=""><div class="formgrid" id="formFields"></div><div class="actions"><button class="btn primary" type="submit">Save transaction</button><button class="btn" type="button" id="cancelModal">Cancel</button></div><div class="hint" id="formHint"></div></form></div></div>
+
+<div class="modal" id="receiptModal">
+  <div class="receipt-wrap">
+    <div class="receipt" id="receiptBox"></div>
+    <div class="receipt-zig"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+const KEY = 'mymoney_v1';
+// Added specific categories for transfers
+const MAIN_CATEGORIES = ['Food','Shopping','Travel','Clothing','Personal care','Education','Bills','Entertainment','Health','Gifts','Delivery','Fees','Owe People','Other'];
+const CATEGORIES = [...MAIN_CATEGORIES, 'UPI Lite Wallet', 'Converted into cash'];
+const ACCOUNTS = [{v:'bank',l:'Bank account'},{v:'lite',l:'BHIM UPI Lite'},{v:'cash',l:'Cash'}];
+
+let data = load();
+let selectedPerson = null;
+let currentCategoryFilter = null;
+let selectedChartMonth = null;
+const cloudClient = window.SUPABASE_CONFIG && window.supabase
+  ? window.supabase.createClient(window.SUPABASE_CONFIG.url, window.SUPABASE_CONFIG.anonKey) : null;
+let cloudUser = null;
+let cloudSyncing = false;
+
+function fresh(){ return {version:2, opening:{bank:0,lite:0,cash:0}, tx:[]}; }
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+function today(){
+  const d = new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function num(v){
+  if(typeof v === 'number') return isFinite(v) && v > 0 ? v : 0;
+  const s = String(v == null ? '' : v).replace(/[^0-9.]/g,'');
+  if(!s) return 0;
+  const n = parseFloat(s);
+  return isFinite(n) && n > 0 ? n : 0;
+}
+const fmt = n => '₹' + Number(n || 0).toLocaleString('en-IN', {maximumFractionDigits:2});
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const setText = (id,v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
+const setHTML = (id,v) => { const el = document.getElementById(id); if(el) el.innerHTML = v; };
+function accountName(a){ return ({bank:'Bank', lite:'BHIM UPI Lite', cash:'Cash'})[a] || ''; }
+
+/* ---------- Helpers for combined split-with-people expenses ---------- */
+function isCombinedExpense(t){
+  return t && t.type === 'expense' && Array.isArray(t.peopleSplits) && t.peopleSplits.length > 0;
+}
+function peopleSplitTotal(t){
+  if(!isCombinedExpense(t)) return 0;
+  return t.peopleSplits.reduce((s,p) => s + num(p.amount), 0);
+}
+function personalExpenseAmount(t){
+  if(!t) return 0;
+  if(t.type === 'refund') return -num(t.amount);
+  if(t.type !== 'expense') return 0;
+  if(isCombinedExpense(t)){
+    if(t.myShare != null) return num(t.myShare);
+    return Math.max(0, num(t.amount) - peopleSplitTotal(t));
+  }
+  return num(t.amount);
+}
+function txLabel(t){
+  if(t.type === 'income') return t.sourceName ? ('From ' + t.sourceName) : 'Money received';
+  if(t.type === 'lent') return t.person ? ('Owe by ' + t.person) : 'Money lent';
+  if(t.type === 'repayment') return t.person ? ('Repaid by ' + t.person) : 'Repayment received';
+  if(t.type === 'refund') return t.title ? ('Refund: ' + t.title) : 'Refund';
+  return ({expense:'Expense', income:'Money received', lent:'Money lent', repayment:'Repayment received', transfer:'Account transfer'})[t.type] || 'Transaction';
+}
+
+function byDateDesc(a,b){
+  const d = String(b.date || '').localeCompare(String(a.date || ''));
+  if(d) return d;
+  return (b.created || 0) - (a.created || 0);
+}
+
+/* ---------- Migration of old split records ---------- */
+function parseSharesFromNotes(notes){
+  const m = /\[Split\s+(\d+)\s+shares?\]/i.exec(notes || '');
+  return m ? Number(m[1]) : 1;
+}
+function splitTitleBase(title){
+  return String(title || '').replace(/\s*\((?:My share|Split)\)\s*$/i, '').trim();
+}
+function stripSplitMarkers(notes){
+  return String(notes || '')
+    .replace(/\s*\[Split\s+\d+\s+shares?\]/gi, '')
+    .replace(/\s*\[My share\]/gi, '')
+    .trim();
+}
+function migrateSplitTransactions(d){
+  if((d.version || 0) >= 2) return d;
+
+  const candidateExpenses = [];
+  const candidateLents = [];
+  d.tx.forEach(t => {
+    if(t.type === 'expense' && (/\[My share\]/i.test(t.notes || '') || /\s*\(My share\)\s*$/i.test(t.title || ''))){
+      candidateExpenses.push(t);
+    } else if(t.type === 'lent' && /\[Split\s+\d+\s+shares?\]/i.test(t.notes || '')){
+      candidateLents.push(t);
+    }
+  });
+
+  const groups = new Map();
+  const addToGroup = (t, kind) => {
+    const key = String(t.date || '') + '|' + String(t.account || '') + '|' + splitTitleBase(t.title);
+    if(!groups.has(key)) groups.set(key, {expenses:[], lents:[]});
+    groups.get(key)[kind === 'expense' ? 'expenses' : 'lents'].push(t);
+  };
+  candidateExpenses.forEach(t => addToGroup(t, 'expense'));
+  candidateLents.forEach(t => addToGroup(t, 'lent'));
+
+  const removeIds = new Set();
+  const combinedToAdd = [];
+
+  groups.forEach(g => {
+    const all = g.expenses.concat(g.lents);
+    if(!all.length) return;
+    const times = all.map(t => Number(t.created) || 0).filter(Boolean);
+    if(times.length && (Math.max(...times) - Math.min(...times) > 20000)) return;
+
+    const expense = g.expenses[0] || null;
+    const myShare = expense ? num(expense.amount) : 0;
+    const peopleSplits = g.lents.map(l => ({
+      name: (l.person || 'Unknown').trim(),
+      shares: parseSharesFromNotes(l.notes),
+      amount: num(l.amount)
+    })).filter(p => p.name);
+
+    const totalAmount = myShare + peopleSplits.reduce((s,p) => s + p.amount, 0);
+    if(!(totalAmount > 0)) return;
+
+    const combined = {
+      id: expense ? expense.id : (g.lents[0] ? g.lents[0].id : uid()),
+      type: 'expense',
+      title: splitTitleBase((expense && expense.title) || (g.lents[0] && g.lents[0].title) || '') || 'Split expense',
+      amount: totalAmount,
+      myShare: myShare,
+      account: (expense && expense.account) || (g.lents[0] && g.lents[0].account) || 'bank',
+      date: (expense && expense.date) || (g.lents[0] && g.lents[0].date) || today(),
+      due: (expense && expense.due) || '',
+      notes: stripSplitMarkers((expense && expense.notes) || (g.lents[0] && g.lents[0].notes) || ''),
+      created: Math.min(...all.map(t => Number(t.created) || Date.now()))
+    };
+
+    if(peopleSplits.length){
+      combined.peopleSplits = peopleSplits;
+      const assigned = peopleSplits.reduce((s,p) => s + (Number(p.shares) || 0), 0);
+      combined.totalShares = assigned + (myShare > 0 ? 1 : 0);
+      combined.myShares = myShare > 0 ? 1 : 0;
+    }
+
+    if(expense && expense.splits && expense.splits.length){
+      combined.splits = expense.splits;
+      combined.category = 'Split';
+    } else {
+      combined.category = (expense && expense.category && expense.category !== 'Split')
+        ? expense.category
+        : (peopleSplits.length ? 'Owe People' : ((expense && expense.category) || 'Other'));
+    }
+
+    all.forEach(t => removeIds.add(t.id));
+    combinedToAdd.push(combined);
+  });
+
+  if(removeIds.size || combinedToAdd.length){
+    d.tx = d.tx.filter(t => !removeIds.has(t.id)).concat(combinedToAdd);
+  }
+  d.version = 2;
+  return d;
+}
+
+/* ---------- Load ---------- */
+function load(){
+  let d = null;
+  try { d = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch(e) { d = null; }
+  if(!d || typeof d !== 'object') d = fresh();
+  d.opening = Object.assign({bank:0,lite:0,cash:0}, d.opening || {});
+  d.tx = Array.isArray(d.tx) ? d.tx : [];
+  d.tx.forEach(t => {
+    if(!t.id) t.id = uid();
+    if(!t.date) t.date = today();
+    t.amount = num(t.amount);
+    if(!t.created) t.created = 0;
+  });
+
+  const beforeVersion = d.version || 0;
+  d = migrateSplitTransactions(d);
+  if((d.version || 0) !== beforeVersion){
+    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){}
+  }
+  return d;
+}
+function setCloudStatus(message, error=false){
+  const el = document.getElementById('cloudStatus');
+  if(el){ el.textContent = message; el.style.color = error ? 'var(--red)' : ''; }
+}
+function cloudUpdateUI(){
+  const fields = document.getElementById('cloudFields'), signed = document.getElementById('cloudSignedIn'), badge = document.getElementById('cloudUser');
+  if(!fields || !signed) return;
+  fields.hidden = !!cloudUser; signed.hidden = !cloudUser; badge.hidden = !cloudUser;
+  if(cloudUser){ badge.textContent = cloudUser.email || 'Signed in'; setCloudStatus('Synced data is available on every device.'); }
+}
+async function cloudSave(){
+  if(!cloudClient || !cloudUser || cloudSyncing) return;
+  cloudSyncing = true;
+  const {error} = await cloudClient.from('money_data').upsert({user_id:cloudUser.id,payload:data,updated_at:new Date().toISOString()});
+  cloudSyncing = false;
+  if(error) setCloudStatus('Cloud sync failed: ' + error.message, true);
+  else setCloudStatus('Saved to cloud just now.');
+}
+async function cloudLoad(){
+  if(!cloudClient || !cloudUser) return;
+  setCloudStatus('Loading your cloud data…');
+  const {data:row,error} = await cloudClient.from('money_data').select('payload').eq('user_id',cloudUser.id).maybeSingle();
+  if(error){ setCloudStatus('Cloud load failed: ' + error.message, true); return; }
+  if(row && row.payload){
+    data = row.payload; localStorage.setItem(KEY, JSON.stringify(data)); render(); setCloudStatus('Loaded from cloud.');
+  } else {
+    await cloudSave();
+  }
+}
+async function initCloud(){
+  if(!cloudClient){ setCloudStatus('Cloud sync is not configured.'); return; }
+  cloudClient.auth.onAuthStateChange(async (_event, session) => {
+    cloudUser = session && session.user ? session.user : null;
+    cloudUpdateUI();
+    if(cloudUser) await cloudLoad();
+  });
+  const {data:sessionData} = await cloudClient.auth.getSession();
+  cloudUser = sessionData.session && sessionData.session.user ? sessionData.session.user : null;
+  cloudUpdateUI();
+  if(cloudUser) await cloudLoad();
+  document.getElementById('cloudSignIn').onclick = async () => {
+    const email = document.getElementById('cloudEmail').value.trim(), password = document.getElementById('cloudPassword').value;
+    if(!email || !password){ setCloudStatus('Enter your email and password.', true); return; }
+    const {error} = await cloudClient.auth.signInWithPassword({email,password});
+    if(error) setCloudStatus(error.message, true);
+  };
+  document.getElementById('cloudSignUp').onclick = async () => {
+    const email = document.getElementById('cloudEmail').value.trim(), password = document.getElementById('cloudPassword').value;
+    if(!email || password.length < 6){ setCloudStatus('Use an email and a password of at least 6 characters.', true); return; }
+    const {error} = await cloudClient.auth.signUp({email,password});
+    if(error) setCloudStatus(error.message, true); else setCloudStatus('Account created. Check your email if confirmation is enabled.');
+  };
+  document.getElementById('cloudSyncNow').onclick = cloudSave;
+  document.getElementById('cloudSignOut').onclick = () => cloudClient.auth.signOut();
+}
+function save(){ localStorage.setItem(KEY, JSON.stringify(data)); cloudSave(); }
+
+function balance(acct){
+  let b = num(data.opening[acct]);
+  data.tx.forEach(t => {
+    if(t.type === 'transfer'){
+      if(t.from === acct) b -= num(t.amount);
+      if(t.to === acct)   b += num(t.amount);
+      return;
+    }
+    if(t.account !== acct) return;
+    if(t.type === 'income' || t.type === 'repayment' || t.type === 'refund') b += num(t.amount);
+    else b -= num(t.amount);
+  });
+  return b;
+}
+
+function people(){
+  const m = {};
+  data.tx.forEach(t => {
+    if(t.type === 'lent' && t.person){
+      const name = (t.person || '').trim();
+      if(!name) return;
+      const k = name.toLowerCase();
+      if(!m[k]) m[k] = {name:name, lent:0, returned:0, tx:[]};
+      m[k].lent += num(t.amount);
+      m[k].tx.push(t);
+    } else if(t.type === 'repayment' && t.person){
+      const name = (t.person || '').trim();
+      if(!name) return;
+      const k = name.toLowerCase();
+      if(!m[k]) m[k] = {name:name, lent:0, returned:0, tx:[]};
+      m[k].returned += num(t.amount);
+      m[k].tx.push(t);
+    } else if(isCombinedExpense(t)){
+      t.peopleSplits.forEach(p => {
+        const name = (p.name || '').trim();
+        if(!name) return;
+        const k = name.toLowerCase();
+        if(!m[k]) m[k] = {name:name, lent:0, returned:0, tx:[]};
+        m[k].lent += num(p.amount);
+        m[k].tx.push(t);
+      });
+    }
+  });
+  return Object.values(m).map(p => Object.assign({}, p, {owed: Math.max(0, p.lent - p.returned)}))
+    .sort((a,b) => (b.owed - a.owed) || a.name.localeCompare(b.name));
+}
+
+function totals(){
+  let expense = 0, lent = 0, income = 0, returned = 0, refund = 0;
+  data.tx.forEach(t => {
+    const a = num(t.amount);
+    if(t.type === 'expense'){
+      expense += personalExpenseAmount(t);
+      lent += peopleSplitTotal(t);
+    } else if(t.type === 'lent'){
+      lent += a;
+    } else if(t.type === 'income') income += a;
+    else if(t.type === 'repayment') returned += a;
+    else if(t.type === 'refund') refund += a;
+  });
+  const netExpense = expense - refund;
+  const owed = people().reduce((s,p) => s + p.owed, 0);
+  return {expense: netExpense, lent:lent, income:income, returned:returned, owed:owed, debit: netExpense + lent};
+}
+
+function sources(){
+  const m = {};
+  data.tx.forEach(t => {
+    if(t.type !== 'income' || !t.sourceName) return;
+    const type = t.sourceType || 'Person';
+    const k = type + '|' + t.sourceName.trim().toLowerCase();
+    if(!m[k]) m[k] = {type:type, name:t.sourceName, total:0, count:0};
+    m[k].total += num(t.amount);
+    m[k].count++;
+  });
+  return Object.values(m).sort((a,b) => b.total - a.total);
+}
+
+function txSubtitle(t){
+  if(isCombinedExpense(t)){
+    const n = t.peopleSplits.length;
+    return 'Split with ' + n + ' ' + (n === 1 ? 'person' : 'people') + ' · Your share ' + fmt(t.myShare);
+  }
+  if(t.type === 'transfer') return accountName(t.from) + ' → ' + accountName(t.to);
+  if(t.type === 'lent') return 'Owe by ' + (t.person || 'Unknown');
+  if(t.type === 'repayment') return 'Repaid by ' + (t.person || 'Unknown');
+  if(t.type === 'income') return 'From ' + (t.sourceName || 'Unknown');
+  if(t.type === 'refund'){
+    const chg = num(t.chargeAmount);
+    return 'Refunded to ' + accountName(t.account) + (chg > 0 ? ' · ' + fmt(chg) + ' cancellation (' + (t.chargeCategory || 'Fees') + ')' : '');
+  }
+  if(t.splits && t.splits.length > 0) return 'Split (' + t.splits.length + ' categories)';
+  return t.category || t.person || t.sourceName || accountName(t.account);
+}
+
+function render(){
+  const z = totals();
+  const bank = balance('bank'), lite = balance('lite'), cash = balance('cash');
+  setText('totalBalance', fmt(bank + lite + cash));
+  setText('bankBalance', fmt(bank));
+  setText('liteBalance', fmt(lite));
+  setText('cashBalance', fmt(cash)); // Shows Cash balance
+  setText('personalSpent', fmt(z.expense));
+  setText('owedTotal', fmt(z.owed));
+  setText('totalDebited', fmt(z.debit));
+  setText('incomeTotal', fmt(z.income + z.returned));
+
+  const ps = people();
+
+  setHTML('dashboardPeople', ps.filter(p => p.owed > 0).slice(0,4).map(p => {
+    const state = p.returned > 0 ? (p.owed > 0 ? 'Partially repaid' : 'Fully repaid') : 'Pending';
+    return '<div class="person-row">' +
+      '<div class="avatar">' + esc((p.name[0] || '?').toUpperCase()) + '</div>' +
+      '<div class="grow"><b>' + esc(p.name) + '</b><div class="small muted">' + p.tx.length + ' record' + (p.tx.length === 1 ? '' : 's') + ' · ' + state + '</div></div>' +
+      '<b class="green-t">' + fmt(p.owed) + '</b></div>';
+  }).join('') || '<div class="empty">No outstanding amounts yet.</div>');
+
+  const recent = data.tx.slice().sort(byDateDesc).slice(0,5);
+  setHTML('recentTx', recent.map(t => {
+    const isIn = (t.type === 'income' || t.type === 'repayment' || t.type === 'refund');
+    const sign = t.type === 'transfer' ? '' : (isIn ? '+' : '−');
+    const cls  = t.type === 'transfer' ? 'muted' : (isIn ? 'green-t' : 'red-t');
+
+    return '<div class="tx-row" data-act="view" data-id="' + esc(t.id) + '" title="View transaction details">' +
+      '<div class="grow"><b>' + esc(t.title || txLabel(t)) + '</b>' +
+      '<div class="small muted">' + esc(t.date) + ' · ' + esc(txSubtitle(t)) + '</div></div>' +
+      '<b class="' + cls + '">' + sign + fmt(t.amount) + '</b></div>';
+  }).join('') || '<div class="empty">No transactions yet. Add your first entry.</div>');
+
+  renderDashboardCategories();
+  categoryHTML('anCategories');
+  sourceHTML('sourceBreakdown');
+  chart();
+  renderTxTable();
+
+  setText('lentAll', fmt(z.lent));
+  setText('returnedAll', fmt(z.returned));
+  setText('owedAll', fmt(z.owed));
+  setText('peopleCount', String(ps.filter(p => p.owed > 0).length));
+  setHTML('peopleList', ps.map(p => {
+    return '<div class="person-row">' +
+      '<div class="avatar">' + esc((p.name[0] || '?').toUpperCase()) + '</div>' +
+      '<div class="grow"><b>' + esc(p.name) + '</b><div class="small muted">Given ' + fmt(p.lent) + ' · Returned ' + fmt(p.returned) + '</div></div>' +
+      '<div class="right"><b class="' + (p.owed ? 'green-t' : '') + '">' + fmt(p.owed) + '</b>' +
+      '<div><button class="btn" data-act="person" data-name="' + esc(p.name) + '">View details →</button></div></div></div>';
+  }).join('') || '<div class="empty">No people added. Use “Lend money” to create a record.</div>');
+
+  setText('anExpense', fmt(z.expense));
+  setText('anLent', fmt(z.lent));
+  setText('anDebit', fmt(z.debit));
+  setText('anOwed', fmt(z.owed));
+  setHTML('anPeople', ps.map(p =>
+    '<div class="person-row"><div class="grow"><b>' + esc(p.name) + '</b><div class="small muted">Outstanding</div></div><b>' + fmt(p.owed) + '</b></div>'
+  ).join('') || '<div class="empty">No lending records.</div>');
+
+  [['openingBank','bank'],['openingLite','lite'],['openingCash','cash']].forEach(pair => {
+    const el = document.getElementById(pair[0]);
+    if(el && document.activeElement !== el) el.value = data.opening[pair[1]];
+  });
+
+  if(selectedPerson) showPerson(selectedPerson, false);
+}
+
+/* ---------- Category breakdown with refund-charge support ---------- */
+function applyRefundToCategories(m, t){
+  const cat = t.category || 'Uncategorised';
+  const charge = num(t.chargeAmount);
+  const cancelled = num(t.amountCancelled) || (num(t.amount) + charge);
+  
+  if(charge > 0){
+    m[cat] = (m[cat] || 0) - cancelled;
+    const ccat = t.chargeCategory || 'Fees';
+    m[ccat] = (m[ccat] || 0) + charge;
+  } else {
+    m[cat] = (m[cat] || 0) - num(t.amount);
+  }
+}
+
+function monthLabel(key){
+  const [year, month] = key.split('-').map(Number);
+  return new Date(year, month - 1, 1).toLocaleString('en', {month:'long', year:'numeric'});
+}
+
+function renderDashboardCategories(){
+  setText('categoryPeriod', selectedChartMonth ? monthLabel(selectedChartMonth) : 'All months');
+  document.getElementById('clearChartMonth').hidden = !selectedChartMonth;
+  categoryHTML('categoryBreakdown', selectedChartMonth);
+}
+
+function categoryHTML(id, month = null){
+  const m = {};
+  data.tx.forEach(t => {
+    if(month && String(t.date).slice(0, 7) !== month) return;
+    if(t.type === 'refund'){ applyRefundToCategories(m, t); return; }
+    if(t.type !== 'expense') return;
+
+    if(isCombinedExpense(t)){
+      if(t.splits && t.splits.length){
+        t.splits.forEach(s => { m[s.category] = (m[s.category] || 0) + num(s.amount); });
+      } else {
+        const k = t.category || 'Uncategorised';
+        m[k] = (m[k] || 0) + num(t.myShare);
+      }
+      return;
+    }
+
+    if(t.splits && t.splits.length){
+      t.splits.forEach(s => { m[s.category] = (m[s.category] || 0) + num(s.amount); });
+    } else {
+      const k = t.category || 'Uncategorised';
+      m[k] = (m[k] || 0) + num(t.amount);
+    }
+  });
+
+  const entries = Object.entries(m).filter(e => e[1] > 0).sort((a,b) => b[1] - a[1]);
+  const sum = entries.reduce((s,x) => s + x[1], 0);
+
+  setHTML(id, entries.map(([k,v]) =>
+    '<div style="margin:12px 0" class="cat-clickable" data-act="filter-category" data-targetcat="' + esc(k) + '" data-month="' + esc(month || '') + '" title="Click to view transactions">' +
+    '<div class="section-title"><span>' + esc(k) + '</span><b>' + fmt(v) + '</b></div>' +
+    '<div class="bar"><span style="width:' + (sum ? Math.max(0, v/sum*100) : 0) + '%"></span></div></div>'
+  ).join('') || '<div class="empty">' + (month ? 'No personal spending recorded for ' + esc(monthLabel(month)) + '.' : 'Your category insights will appear here.') + '</div>');
+}
+
+function sourceHTML(id){
+  const s = sources();
+  const sum = s.reduce((a,x) => a + x.total, 0);
+  setHTML(id, s.map(x =>
+    '<div style="margin:12px 0"><div class="section-title"><span>' + esc(x.name) +
+    '<span class="src-pill ' + (x.type === 'Organisation' ? 'org' : '') + '">' + esc(x.type) + '</span></span>' +
+    '<b class="green-t">' + fmt(x.total) + '</b></div>' +
+    '<div class="bar"><span style="width:' + (sum ? Math.max(0, x.total/sum*100) : 0) + '%"></span></div></div>'
+  ).join('') || '<div class="empty">Money you receive will show up here by source.</div>');
+}
+
+function chart(){
+  const months = [];
+  const now = new Date();
+  for(let i = 5; i >= 0; i--){
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
+    const spent = data.tx.filter(t => String(t.date).startsWith(key) && (t.type === 'expense' || t.type === 'lent' || t.type === 'refund'))
+                          .reduce((s,t) => s + (t.type === 'refund' ? -num(t.amount) : num(t.amount)), 0);
+    months.push({key: key, label: d.toLocaleString('en', {month:'short'}), spent: spent});
+  }
+  const max = Math.max(1, ...months.map(m => m.spent));
+  setHTML('moneyChart', months.map(m =>
+    '<button type="button" class="chartcol" data-act="filter-month" data-month="' + m.key + '" aria-pressed="' + (selectedChartMonth === m.key) + '" aria-label="' + esc(monthLabel(m.key)) + ': ' + esc(fmt(m.spent)) + '. Filter categories" title="' + esc(monthLabel(m.key)) + ' — click to filter categories">' +
+    '<span class="chartbar" style="height:' + Math.max(0, m.spent / max * 125) + 'px"></span>' +
+    m.label + '<span class="chart-month-total">' + (m.spent ? Math.round(m.spent) : '—') + '</span></button>'
+  ).join(''));
+}
+
+function filteredTx(){
+  const q    = (document.getElementById('txSearch').value || '').trim().toLowerCase();
+  const type = document.getElementById('txType').value || '';
+  const from = document.getElementById('txFrom').value || '';
+  const to   = document.getElementById('txTo').value || '';
+
+  return data.tx.filter(t => {
+    if(q){
+      const hay = [t.title, t.notes, t.person, t.category, t.sourceName, t.sourceType, t.chargeCategory,
+        ...(t.peopleSplits ? t.peopleSplits.map(p => p.name) : [])]
+        .filter(Boolean).join(' ').toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+
+    if (type === 'debit') {
+      if (t.type !== 'expense' && t.type !== 'lent' && t.type !== 'refund') return false;
+    } else if (type === 'credit') {
+      if (t.type !== 'income' && t.type !== 'repayment' && t.type !== 'refund') return false;
+    } else if (type === 'expense') {
+      if (t.type !== 'expense' && t.type !== 'refund') return false;
+    } else if (type && t.type !== type) {
+      return false;
+    }
+
+    if(from && String(t.date) < from) return false;
+    if(to   && String(t.date) > to)   return false;
+
+    if(currentCategoryFilter) {
+      const cats = [];
+      if(t.category) cats.push(t.category);
+      if(t.chargeCategory) cats.push(t.chargeCategory);
+      if(t.splits) t.splits.forEach(s => cats.push(s.category));
+      if(!cats.includes(currentCategoryFilter)) return false;
+    }
+
+    return true;
+  }).sort(byDateDesc);
+}
+
+function txRowHTML(t){
+  const isIn = (t.type === 'income' || t.type === 'repayment' || t.type === 'refund');
+  const sign = t.type === 'transfer' ? '' : (isIn ? '+' : '−');
+  const cls  = t.type === 'transfer' ? 'muted' : (isIn ? 'green-t' : 'red-t');
+
+  let detail = '';
+  if(isCombinedExpense(t)){
+    detail = 'Split · ' + t.peopleSplits.length + ' ' + (t.peopleSplits.length === 1 ? 'person' : 'people') + ' · Your share ' + fmt(t.myShare);
+  } else if (t.type === 'transfer') detail = accountName(t.from) + ' → ' + accountName(t.to);
+  else if (t.type === 'lent') detail = 'Owe by ' + (t.person || 'Unknown');
+  else if (t.type === 'repayment') detail = 'Repaid by ' + (t.person || 'Unknown');
+  else if (t.type === 'income') detail = 'From ' + (t.sourceName || 'Unknown');
+  else if (t.type === 'refund') {
+    const chg = num(t.chargeAmount);
+    detail = 'Refunded to ' + accountName(t.account) + (chg > 0 ? ' · ' + fmt(chg) + ' cancellation (' + (t.chargeCategory || 'Fees') + ')' : '');
+  }
+  else if (t.splits && t.splits.length > 0) detail = 'Split (' + t.splits.length + ' categories)';
+  else detail = t.category || t.person || t.sourceName || '—';
+
+  const acct = t.type === 'transfer' ? '—' : accountName(t.account);
+  return '<tr data-act="view" data-id="' + esc(t.id) + '" title="View transaction details">' +
+    '<td>' + esc(t.date) + '</td>' +
+    '<td><b>' + esc(t.title || txLabel(t)) + '</b><div class="small muted">' + esc(t.notes || '') + '</div></td>' +
+    '<td>' + esc(detail) + '</td>' +
+    '<td>' + esc(acct) + '</td>' +
+    '<td class="' + cls + '">' + sign + fmt(t.amount) + '</td>' +
+    '<td class="right">' +
+      '<button class="icon-btn" data-act="edit" data-id="' + esc(t.id) + '" title="Edit">✎</button>' +
+      '<button class="icon-btn danger" data-act="del" data-id="' + esc(t.id) + '" title="Delete">🗑</button>' +
+    '</td></tr>';
+}
+
+function renderTxStats() {
+  const type = document.getElementById('txType').value;
+  const txs = filteredTx();
+  const container = document.getElementById('txStatsContainer');
+  const titleEl = document.getElementById('txStatsTitle');
+  const totalEl = document.getElementById('txStatsTotal');
+  const barsEl = document.getElementById('txStatsBars');
+
+  if (txs.length === 0 || type === '') {
+    container.style.display = 'none';
+    return;
+  }
+  container.style.display = 'block';
+
+  let groups = {};
+  let title = "Breakdown";
+
+  if (type === 'expense') {
+    title = "Net Personal Spending by Category";
+    txs.forEach(t => {
+      if(t.type === 'refund'){ applyRefundToCategories(groups, t); return; }
+      if(t.type !== 'expense') return;
+      if(isCombinedExpense(t)){
+        if(t.splits && t.splits.length){
+          t.splits.forEach(s => { groups[s.category] = (groups[s.category] || 0) + num(s.amount); });
+        } else {
+          const k = t.category || 'Uncategorised';
+          groups[k] = (groups[k] || 0) + num(t.myShare);
+        }
+      } else if(t.splits && t.splits.length){
+        t.splits.forEach(s => { groups[s.category] = (groups[s.category] || 0) + num(s.amount); });
+      } else {
+        const k = t.category || 'Uncategorised';
+        groups[k] = (groups[k] || 0) + num(t.amount);
+      }
+    });
+  } else if (type === 'income') {
+    title = "Money Received by Source";
+    txs.forEach(t => {
+      const k = (t.sourceType === 'Organisation' ? '🏢 ' : '👤 ') + (t.sourceName || 'Unknown');
+      groups[k] = (groups[k] || 0) + num(t.amount);
+    });
+  } else if (type === 'lent') {
+    title = "Money Lent by Person";
+    txs.forEach(t => {
+      const k = '👤 ' + (t.person || 'Unknown');
+      groups[k] = (groups[k] || 0) + num(t.amount);
+    });
+  } else if (type === 'repayment') {
+    title = "Repayments by Person";
+    txs.forEach(t => {
+      const k = '👤 ' + (t.person || 'Unknown');
+      groups[k] = (groups[k] || 0) + num(t.amount);
+    });
+  } else if (type === 'refund') {
+    title = "Refunds by Category";
+    txs.forEach(t => {
+      const k = t.category || 'Uncategorised';
+      groups[k] = (groups[k] || 0) + num(t.amount);
+    });
+  } else if (type === 'debit') {
+    title = "Total Debits (Category & Person)";
+    txs.forEach(t => {
+      if(t.type === 'refund'){ applyRefundToCategories(groups, t); return; }
+      if(t.type === 'expense'){
+        if(isCombinedExpense(t)){
+          const k = 'Split · ' + t.peopleSplits.length + ' ' + (t.peopleSplits.length === 1 ? 'person' : 'people');
+          groups[k] = (groups[k] || 0) + num(t.amount);
+        } else if(t.splits && t.splits.length){
+          t.splits.forEach(s => { groups[s.category] = (groups[s.category] || 0) + num(s.amount); });
+        } else {
+          const k = t.category || 'Uncategorised';
+          groups[k] = (groups[k] || 0) + num(t.amount);
+        }
+      } else if(t.type === 'lent'){
+        const k = '👤 ' + (t.person || 'Unknown');
+        groups[k] = (groups[k] || 0) + num(t.amount);
+      }
+    });
+  } else if (type === 'credit') {
+    title = "Total Credits (Source & Person)";
+    txs.forEach(t => {
+      const k = t.type === 'repayment' ? '👤 ' + (t.person || 'Unknown') : (t.type === 'refund' ? 'Refund' : (t.sourceType === 'Organisation' ? '🏢 ' : '👤 ') + (t.sourceName || 'Unknown'));
+      groups[k] = (groups[k] || 0) + num(t.amount);
+    });
+  } else if (type === 'transfer') {
+    title = "Transfers by Account";
+    txs.forEach(t => {
+      const k = accountName(t.from) + ' → ' + accountName(t.to);
+      groups[k] = (groups[k] || 0) + num(t.amount);
+    });
+  }
+
+  const entries = Object.entries(groups).filter(e => e[1] > 0).sort((a,b) => b[1] - a[1]);
+  const sum = entries.reduce((s,x) => s + x[1], 0);
+
+  titleEl.textContent = title;
+  totalEl.textContent = 'Total: ' + fmt(sum);
+
+  barsEl.innerHTML = entries.map(([k,v]) =>
+    '<div>' +
+      '<div class="section-title" style="margin-bottom:6px; font-size:13px;"><span>' + esc(k) + '</span><b>' + fmt(v) + '</b></div>' +
+      '<div class="bar"><span style="width:' + (sum ? Math.max(0, v/sum*100) : 0) + '%"></span></div>' +
+    '</div>'
+  ).join('');
+}
+
+function renderTxTable(){
+  const banner = document.getElementById('activeFilterBanner');
+  if (currentCategoryFilter) {
+    banner.style.display = 'block';
+    document.getElementById('activeCatName').textContent = currentCategoryFilter;
+  } else {
+    banner.style.display = 'none';
+  }
+
+  const rows = filteredTx();
+  setHTML('txTable', rows.map(txRowHTML).join('') || '<tr><td colspan="6" class="empty">No matching transactions.</td></tr>');
+  renderTxStats();
+}
+
+function showPerson(name, scroll){
+  const p = people().find(x => x.name.toLowerCase() === String(name || '').toLowerCase());
+  const box = document.getElementById('personDetail');
+  if(!p){
+    selectedPerson = null;
+    box.style.display = 'none';
+    box.innerHTML = '';
+    return;
+  }
+  selectedPerson = p.name;
+  box.style.display = 'block';
+  const rows = p.tx.slice().sort(byDateDesc);
+
+  box.innerHTML =
+    '<div class="section-title"><div><h2>' + esc(p.name) + ' — lending details</h2>' +
+    '<div class="muted small">Purpose-wise history of money sent and returned</div></div>' +
+    '<button class="btn" data-act="close-person">Close</button></div>' +
+    '<div class="grid stats">' +
+      '<div class="card stat"><div class="label">Total given</div><div class="amount">' + fmt(p.lent) + '</div></div>' +
+      '<div class="card stat"><div class="label">Returned</div><div class="amount green-t">' + fmt(p.returned) + '</div></div>' +
+      '<div class="card stat"><div class="label">Still owed</div><div class="amount green-t">' + fmt(p.owed) + '</div></div>' +
+      '<div class="card stat"><div class="label">Records</div><div class="amount">' + p.tx.length + '</div></div>' +
+    '</div>' +
+    '<div class="actions">' +
+      '<button class="btn primary" data-act="add-lent" data-person="' + esc(p.name) + '">＋ Add money given</button>' +
+      '<button class="btn green" data-act="add-repay" data-person="' + esc(p.name) + '">↙ Record repayment</button>' +
+    '</div>' +
+    '<div class="tablewrap"><table><thead><tr><th>Date</th><th>Purpose / details</th><th>Type</th><th>Account</th><th>Amount</th><th></th></tr></thead><tbody>' +
+      rows.map(t => {
+        let amt = num(t.amount);
+        let label = txLabel(t);
+        let sign = '−';
+        let cls = 'red-t';
+        if(t.type === 'repayment'){ sign = '+'; cls = 'green-t'; }
+        if(isCombinedExpense(t)){
+          const share = t.peopleSplits.find(x => x.name.toLowerCase() === p.name.toLowerCase());
+          amt = share ? num(share.amount) : 0;
+          label = 'Money lent (split)';
+        }
+        return '<tr data-act="view" data-id="' + esc(t.id) + '" title="View transaction details">' +
+          '<td>' + esc(t.date) + '</td>' +
+          '<td><b>' + esc(t.title || t.category || '—') + '</b><div class="small muted">' + esc(t.notes || '') + '</div></td>' +
+          '<td>' + esc(label) + '</td>' +
+          '<td>' + esc(accountName(t.account)) + '</td>' +
+          '<td class="' + cls + '">' + sign + fmt(amt) + '</td>' +
+          '<td class="right">' +
+            '<button class="icon-btn" data-act="edit" data-id="' + esc(t.id) + '" title="Edit">✎</button>' +
+            '<button class="icon-btn danger" data-act="del" data-id="' + esc(t.id) + '" title="Delete">🗑</button>' +
+          '</td></tr>';
+      }).join('') +
+    '</tbody></table></div>';
+  if(scroll !== false) box.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* ---------- Receipt (bill view) ---------- */
+function receiptHTML(t){
+  const isIn = (t.type === 'income' || t.type === 'repayment' || t.type === 'refund');
+  const sign = t.type === 'transfer' ? '' : (isIn ? '+' : '−');
+  const amtCls = t.type === 'transfer' ? 'rc-neutral' : (isIn ? 'rc-in' : 'rc-out');
+  const TYPE_NAMES = {
+    expense:'Personal expense', income:'Money received', lent:'Money lent',
+    repayment:'Repayment received', refund:'Refund', transfer:'Account transfer'
+  };
+
+  const rows = [];
+  const push = (k, v) => {
+    const s = (v == null ? '' : String(v)).trim();
+    if(s) rows.push([k, s]);
+  };
+
+  let itemsHTML = '';
+
+  if(isCombinedExpense(t)){
+    itemsHTML = '<div class="rc-dash"></div><div class="rc-items-title">Split details</div>' +
+      '<div class="rc-item"><span>Your share</span><span class="rc-dots"></span><span><b>' + fmt(t.myShare) + '</b></span></div>' +
+      t.peopleSplits.map(p =>
+        '<div class="rc-item"><span>' + esc(p.name) + (Number(p.shares) > 1 ? ' × ' + p.shares : '') + '</span>' +
+        '<span class="rc-dots"></span><span><b>' + fmt(p.amount) + '</b></span></div>'
+      ).join('') +
+      '<div class="rc-item" style="border-top:1px dashed #d3cab6;margin-top:6px;padding-top:8px">' +
+        '<span><b>Total paid</b></span><span class="rc-dots"></span><span><b>' + fmt(t.amount) + '</b></span>' +
+      '</div>';
+
+    if(t.splits && t.splits.length){
+      itemsHTML += '<div class="rc-items-title" style="margin-top:12px">Your categories</div>' +
+        t.splits.map(s =>
+          '<div class="rc-item"><span>' + esc(s.category) + '</span><span class="rc-dots"></span><span><b>' + fmt(s.amount) + '</b></span></div>'
+        ).join('');
+    }
+
+    push('Paid from', accountName(t.account));
+    push('Your share', fmt(t.myShare));
+    push('Split with', t.peopleSplits.map(p => p.name).join(', '));
+    push('Due date', t.due);
+  } else if(t.type === 'expense'){
+    if(t.splits && t.splits.length){
+      itemsHTML = '<div class="rc-dash"></div><div class="rc-items-title">Items</div>' +
+        t.splits.map(s =>
+          '<div class="rc-item"><span>' + esc(s.category) + '</span><span class="rc-dots"></span><span><b>' + fmt(s.amount) + '</b></span></div>'
+        ).join('') +
+        '<div class="rc-item" style="border-top:1px dashed #d3cab6;margin-top:6px;padding-top:8px">' +
+          '<span><b>Total</b></span><span class="rc-dots"></span><span><b>' + fmt(t.amount) + '</b></span>' +
+        '</div>';
+    }
+    push('Category', t.category && t.category !== 'Split' ? t.category : (t.splits ? 'Split categories' : ''));
+    push('Paid from', accountName(t.account));
+    push('Due date', t.due);
+  } else if(t.type === 'income'){
+    push('Source', t.sourceName ? (t.sourceName + (t.sourceType ? ' · ' + t.sourceType : '')) : '');
+    push('Received into', accountName(t.account));
+  } else if(t.type === 'lent'){
+    push('Person', t.person);
+    push('Category', t.category || 'Owe People');
+    push('Sent from', accountName(t.account));
+    push('Expected return', t.due);
+  } else if(t.type === 'repayment'){
+    push('Person', t.person);
+    push('Received into', accountName(t.account));
+  } else if(t.type === 'refund'){
+    const charge = num(t.chargeAmount);
+    const cancelled = num(t.amountCancelled) || (num(t.amount) + charge);
+    
+    if(charge > 0 || cancelled > num(t.amount)){
+      itemsHTML = '<div class="rc-dash"></div><div class="rc-items-title">Cancellation breakdown</div>' +
+        '<div class="rc-item"><span>Value of items cancelled</span><span class="rc-dots"></span><span><b>' + fmt(cancelled) + '</b></span></div>' +
+        '<div class="rc-item"><span>Refund received</span><span class="rc-dots"></span><span><b>' + fmt(t.amount) + '</b></span></div>' +
+        '<div class="rc-item"><span>Cancellation charge (' + esc(t.chargeCategory || 'Fees') + ')</span><span class="rc-dots"></span><span><b>' + fmt(charge) + '</b></span></div>' +
+        '<div class="rc-item" style="border-top:1px dashed #d3cab6;margin-top:6px;padding-top:8px">' +
+          '<span><b>Net spent</b></span><span class="rc-dots"></span><span><b>' + fmt(charge) + '</b></span>' +
+        '</div>';
+    }
+    push('Category refunded', t.category);
+    push('Received into', accountName(t.account));
+  } else if(t.type === 'transfer'){
+    push('From', accountName(t.from));
+    push('To', accountName(t.to));
+  }
+  push('Date', t.date);
+  push('Notes', t.notes);
+
+  const canRefund = (t.type === 'expense');
+  const refundBtn = canRefund
+    ? '<button type="button" class="rc-refund" data-act="record-refund" data-id="' + esc(t.id) + '">↩ Refund</button>'
+    : '';
+
+  return '<div class="rc-top">' +
+      '<div class="rc-brand">◈ Shashanth Reddy</div>' +
+      '<div><span class="rc-type">' + esc(TYPE_NAMES[t.type] || 'Transaction') + '</span></div>' +
+      '<div class="rc-title">' + esc(t.title || txLabel(t)) + '</div>' +
+      '<div class="rc-amt ' + amtCls + '">' + sign + fmt(t.amount) + '</div>' +
+      '<div class="rc-sub">' + esc(t.date) + '</div>' +
+    '</div>' +
+    itemsHTML +
+    '<div class="rc-dash"></div>' +
+    rows.map(r =>
+      '<div class="rc-row"><span class="k">' + esc(r[0]) + '</span><span class="v">' + esc(r[1]) + '</span></div>'
+    ).join('') +
+    '<div class="rc-dash"></div>' +
+    '<div class="rc-foot">Ref ' + esc(String(t.id).slice(0,8).toUpperCase()) +
+      (t.created ? '<br>' + esc(new Date(t.created).toLocaleString('en-IN')) : '') +
+    '</div>' +
+    '<div class="rc-actions">' +
+      '<button type="button" class="rc-edit" data-act="edit" data-id="' + esc(t.id) + '">✎ Edit</button>' +
+      refundBtn +
+      '<button type="button" class="rc-del" data-act="del" data-id="' + esc(t.id) + '">🗑 Delete</button>' +
+      '<button type="button" class="rc-close" data-act="close-receipt">Close</button>' +
+    '</div>';
+}
+
+function openReceipt(id){
+  const t = data.tx.find(x => x.id === id);
+  if(!t) return;
+  const box = document.getElementById('receiptBox');
+  box.innerHTML = receiptHTML(t);
+  box.scrollTop = 0;
+  document.getElementById('receiptModal').classList.add('show');
+}
+function closeReceipt(){
+  document.getElementById('receiptModal').classList.remove('show');
+  setHTML('receiptBox', '');
+}
+
+/* ---------- Form helpers ---------- */
+function field(label, control, full){
+  return '<div class="field' + (full ? ' full' : '') + '"><label>' + esc(label) + '</label>' + control + '</div>';
+}
+function inputHTML(name, value, opts){
+  opts = opts || {};
+  const type = opts.type || 'text';
+  const required = opts.required !== false;
+  let s = '<input name="' + name + '" type="' + type + '" value="' + esc(value == null ? '' : value) + '"';
+  if(opts.placeholder) s += ' placeholder="' + esc(opts.placeholder) + '"';
+  if(opts.min != null) s += ' min="' + opts.min + '"';
+  if(opts.step != null) s += ' step="' + opts.step + '"';
+  if(required) s += ' required';
+  return s + '>';
+}
+function selectHTML(name, options, value, required){
+  required = required !== false;
+  return '<select name="' + name + '"' + (required ? ' required' : '') + '>' +
+    options.map(o => '<option value="' + esc(o.v) + '"' +
+      (String(o.v) === String(value) ? ' selected' : '') + '>' + esc(o.l) + '</option>').join('') +
+    '</select>';
+}
+function textareaHTML(name, value, placeholder){
+  return '<textarea name="' + name + '"' + (placeholder ? ' placeholder="' + esc(placeholder) + '"' : '') + '>' +
+    esc(value == null ? '' : value) + '</textarea>';
+}
+
+function personOptionsHTML(selectedName) {
+  const names = Array.from(new Set(people().map(p => p.name)));
+  let options = '<option value="">Choose a person</option>';
+  names.forEach(n => {
+    options += '<option value="' + esc(n) + '"' + (n === selectedName ? ' selected' : '') + '>' + esc(n) + '</option>';
+  });
+  if (selectedName && !names.includes(selectedName)) {
+    options += '<option value="' + esc(selectedName) + '" selected>' + esc(selectedName) + '</option>';
+  }
+  options += '<option value="__new__">＋ Add a new person</option>';
+
+  return options;
+}
+
+function personSelectHTML(selectedName) {
+  return '<select name="personSelect" id="personSelect" required>' + personOptionsHTML(selectedName) + '</select>' +
+         '<input name="newPerson" id="newPerson" placeholder="Enter new person\'s name" style="display:none;margin-top:8px">';
+}
+
+function openModal(type, person, tx){
+  person = person || '';
+  tx = tx || null;
+  const isEdit = !!tx && !!tx.id;
+  const f = document.getElementById('formFields');
+  const formEl = document.getElementById('entryForm');
+  let title = '', html = '', hint = '';
+
+  if(type === 'expense'){
+    title = isEdit ? 'Edit expense' : 'Add expense';
+    const cat = (tx && tx.category && tx.category !== 'Owe People' && tx.category !== 'Split') ? tx.category : 'Food';
+    const pname = (tx && tx.category === 'Owe People') ? (tx.person || '') : '';
+
+    html =
+      field('What was this payment for?', inputHTML('title', tx ? tx.title : '', {placeholder:'e.g. Tickets'})) +
+      '<div class="field"><label id="expenseAmountLabel">Amount (₹)</label>' + inputHTML('amount', tx ? tx.amount : '', {type:'number', min:'0.01', step:'0.01'}) + '</div>' +
+
+      '<div class="field full" id="catSplitToggleWrap" style="margin-top:10px">' +
+        '<label style="display:flex;align-items:center;gap:8px;cursor:pointer">' +
+          '<input type="checkbox" name="catSplitToggle" id="catSplitToggle" style="width:auto;margin:0"> ' +
+          'Split this expense into multiple categories?' +
+        '</label>' +
+      '</div>' +
+      '<div id="standardCatWrap" class="field full">' +
+        '<label>Category</label>' +
+        selectHTML('category', CATEGORIES.map(c => ({v:c, l:c})), cat) +
+      '</div>' +
+      '<div id="catSplitSection" class="field full" style="display:none;background:#0d1426;padding:12px;border-radius:10px;border:1px dashed var(--line);margin-top:8px">' +
+        '<div id="catSplitList" style="display:flex;flex-direction:column;gap:8px;"></div>' +
+        '<button type="button" class="btn" id="addCatSplitBtn" style="margin-top:8px">＋ Add Category</button>' +
+        '<div style="margin-top:12px;font-size:13px;" id="catSplitTotalDisplay">Allocated: ₹0 / ₹0</div>' +
+      '</div>' +
+
+      '<div class="field full" id="owePersonWrap" style="display:none"><label>Who did you give the money to?</label>' +
+        personSelectHTML(pname) +
+      '</div>' +
+
+      '<div class="field full" style="margin-top:10px">' +
+        '<label style="display:flex;align-items:center;gap:8px;cursor:pointer">' +
+          '<input type="checkbox" name="splitToggle" id="splitToggle" style="width:auto;margin:0"> ' +
+          'Split this expense with others?' +
+        '</label>' +
+      '</div>' +
+      '<div id="splitSection" class="field full" style="display:none;background:#0d1426;padding:12px;border-radius:10px;border:1px dashed var(--line);margin-top:8px">' +
+        '<div class="field" style="margin-bottom:12px">' +
+          '<label>Total Number of Shares (e.g. 3)</label>' +
+          '<input type="number" id="totalSharesInput" value="2" min="1" step="1">' +
+        '</div>' +
+        '<div id="splitPeopleList" style="display:flex;flex-direction:column;gap:8px;"></div>' +
+        '<button type="button" class="btn" id="addSplitPersonBtn" style="margin-top:8px">＋ Add Person</button>' +
+        '<datalist id="existingPeopleList">' + Array.from(new Set(people().map(p => p.name))).map(n => '<option value="' + esc(n) + '">').join('') + '</datalist>' +
+        '<div style="margin-top:12px;font-weight:600;color:var(--green)" id="myShareDisplay">Your personal share: ₹0</div>' +
+      '</div>' +
+
+      field('Paid from', selectHTML('account', ACCOUNTS, tx ? tx.account : 'bank')) +
+      field('Date', inputHTML('date', tx ? tx.date : today(), {type:'date'})) +
+      field('Expected return date (optional)', inputHTML('due', tx ? tx.due : '', {type:'date', required:false})) +
+      field('Purpose details / notes', textareaHTML('notes', tx ? tx.notes : '', 'Notes'), true);
+    hint = 'Choose “Owe People” when you are paying on someone else’s behalf. Use “Split” to divide a bill.';
+  }
+  else if(type === 'refund'){
+    title = isEdit ? 'Edit refund' : 'Record a refund';
+    const cat = (tx && tx.category) ? tx.category : 'Shopping';
+    const cancelledVal = (tx && tx.amountCancelled) ? tx.amountCancelled : (tx && tx.originalAmount ? tx.originalAmount : '');
+    const chargeCat = (tx && tx.chargeCategory) ? tx.chargeCategory : 'Fees';
+    
+    html =
+      field('What was this refund for?', inputHTML('title', tx ? tx.title : '', {placeholder:'e.g. Myntra Cancellation'})) +
+      field('Refund amount received (₹)', inputHTML('amount', tx ? tx.amount : '', {type:'number', min:'0.01', step:'0.01'})) +
+      field('Value of items being cancelled (₹)', inputHTML('amountCancelled', cancelledVal, {type:'number', min:'0', step:'0.01', required:false, placeholder:'E.g., cost of 2 tickets out of 3.'})) +
+      field('Category refunded from', selectHTML('category', CATEGORIES.map(c => ({v:c, l:c})), cat)) +
+      '<div id="refundChargeWrap" class="field full" style="display:none;background:#0d1426;padding:12px;border-radius:10px;border:1px dashed var(--line);margin-top:8px">' +
+        '<div class="field"><label>Cancellation charge (auto-computed)</label>' +
+          '<div class="amount" style="font-size:22px;color:var(--amber);margin:4px 0" id="refundChargeDisplay">₹0</div>' +
+          '<div class="small muted">Not refunded by the seller. Recorded separately under your chosen charge category.</div>' +
+        '</div>' +
+        '<div class="field" style="margin-top:10px"><label>Charge category</label>' +
+          selectHTML('chargeCategory', CATEGORIES.map(c => ({v:c, l:c})), chargeCat) +
+        '</div>' +
+      '</div>' +
+      field('Received into', selectHTML('account', ACCOUNTS, tx ? tx.account : 'bank')) +
+      field('Date', inputHTML('date', tx ? tx.date : today(), {type:'date'})) +
+      field('Notes (optional)', textareaHTML('notes', tx ? tx.notes : '', 'Notes'), true);
+    hint = 'If you only cancel part of an order, enter the cost of those specific items in the "Value" field to calculate the exact fee.';
+  }
+  else if(type === 'income'){
+    title = isEdit ? 'Edit money received' : 'Add money received';
+    const st = (tx && tx.sourceType) ? tx.sourceType : 'Person';
+    html =
+      field('Source type', selectHTML('sourceType', [{v:'Person', l:'Person'}, {v:'Organisation', l:'Organisation'}], st)) +
+      '<div class="field full"><label>Source</label>' +
+        '<select name="sourceSelect" id="incSourceSelect" required></select>' +
+        '<input name="newSource" id="newIncSource" placeholder="Enter name" style="display:none;margin-top:8px">' +
+      '</div>' +
+      field('Amount (₹)', inputHTML('amount', tx ? tx.amount : '', {type:'number', min:'0.01', step:'0.01'})) +
+      field('Received into', selectHTML('account', ACCOUNTS, tx ? tx.account : 'bank')) +
+      field('Date', inputHTML('date', tx ? tx.date : today(), {type:'date'})) +
+      field('Notes (optional)', textareaHTML('notes', tx ? tx.notes : '', 'Notes'), true);
+    hint = 'Once you add a source, it will appear as an option next time.';
+  }
+  else if(type === 'lent'){
+    title = isEdit ? 'Edit money lent' : 'Record money lent';
+    const pname = tx ? (tx.person || '') : person;
+    const cat = (tx && tx.category) ? tx.category : 'Owe People';
+
+    html =
+      field('Person', personSelectHTML(pname)) +
+      field('Purpose (e.g. hotel booking)', inputHTML('title', tx ? tx.title : '')) +
+      field('Amount given (₹)', inputHTML('amount', tx ? tx.amount : '', {type:'number', min:'0.01', step:'0.01'})) +
+      field('Category', selectHTML('category', CATEGORIES.map(c => ({v:c, l:c})), cat)) +
+      field('Sent from', selectHTML('account', ACCOUNTS, tx ? tx.account : 'bank')) +
+      field('Date given', inputHTML('date', tx ? tx.date : today(), {type:'date'})) +
+      field('Expected return date', inputHTML('due', tx ? tx.due : '', {type:'date', required:false})) +
+      field('Additional notes', textareaHTML('notes', tx ? tx.notes : '', 'Notes'), true);
+    hint = 'Counted as money debited and as money owed to you — not personal spending.';
+  }
+  else if(type === 'repayment'){
+    title = isEdit ? 'Edit repayment' : 'Record repayment';
+    const pname = tx ? (tx.person || '') : person;
+
+    html =
+      field('Person', personSelectHTML(pname)) +
+      field('Amount returned (₹)', inputHTML('amount', tx ? tx.amount : '', {type:'number', min:'0.01', step:'0.01'})) +
+      field('Received into', selectHTML('account', ACCOUNTS, tx ? tx.account : 'bank')) +
+      field('Date received', inputHTML('date', tx ? tx.date : today(), {type:'date'})) +
+      field('Notes', textareaHTML('notes', tx ? tx.notes : '', 'Notes'), true);
+    hint = 'A repayment reduces what they owe and increases your account balance. It is not counted as new income.';
+  }
+  else if(type === 'transfer'){
+    title = isEdit ? 'Edit transfer' : 'Transfer between your accounts';
+    html =
+      field('Amount (₹)', inputHTML('amount', tx ? tx.amount : '', {type:'number', min:'0.01', step:'0.01'})) +
+      field('Transfer from', selectHTML('from', ACCOUNTS, tx ? tx.from : 'bank')) +
+      field('Transfer to', selectHTML('to', ACCOUNTS, tx ? tx.to : 'lite')) +
+      field('Date', inputHTML('date', tx ? tx.date : today(), {type:'date'})) +
+      field('Notes', textareaHTML('notes', tx ? tx.notes : '', 'Notes'), true);
+    hint = 'Internal transfers do not count as expenses or income.';
+  }
+
+  document.getElementById('modalTitle').textContent = title;
+  f.innerHTML = html;
+  document.getElementById('formHint').textContent = hint;
+  formEl.dataset.type = type;
+  document.getElementById('editId').value = (tx && tx.id) ? tx.id : '';
+
+  if(type === 'expense') {
+    setupSplitLogic(tx);
+    setupCategorySplitLogic(tx);
+    setupOwe();
+  }
+  if(type === 'refund')   setupRefundCharge();
+  if(type === 'income')   setupIncomeSource(tx);
+  if(type === 'lent' || type === 'repayment') setupPersonSelect();
+
+  document.getElementById('modal').classList.add('show');
+}
+
+function setupRefundCharge(){
+  const amtInput = document.querySelector('#formFields [name="amount"]');
+  const cancelledInput = document.querySelector('#formFields [name="amountCancelled"]');
+  const wrap = document.getElementById('refundChargeWrap');
+  const display = document.getElementById('refundChargeDisplay');
+  if(!amtInput || !cancelledInput || !wrap || !display) return;
+
+  const update = () => {
+    const amt = num(amtInput.value);
+    const cancelled = num(cancelledInput.value);
+    const charge = (cancelled > amt) ? (cancelled - amt) : 0;
+    if(charge > 0){
+      wrap.style.display = 'block';
+      display.textContent = fmt(charge);
+    } else {
+      wrap.style.display = 'none';
+      display.textContent = '₹0';
+    }
+  };
+  amtInput.addEventListener('input', update);
+  cancelledInput.addEventListener('input', update);
+  update();
+}
+
+function setupCategorySplitLogic(tx) {
+  const catToggle = document.getElementById('catSplitToggle');
+  const catSection = document.getElementById('catSplitSection');
+  const standardWrap = document.getElementById('standardCatWrap');
+  const addBtn = document.getElementById('addCatSplitBtn');
+  const list = document.getElementById('catSplitList');
+  const amountInput = document.querySelector('#formFields [name="amount"]');
+
+  if(!catToggle || !catSection) return;
+
+  const updateCatTotal = () => {
+    const amount = num(amountInput.value);
+    const inputs = Array.from(document.querySelectorAll('.split-cat-amt'));
+    const sum = inputs.reduce((s, inp) => s + num(inp.value), 0);
+    const display = document.getElementById('catSplitTotalDisplay');
+    if(sum > amount) {
+      display.style.color = 'var(--red)';
+      display.textContent = `Allocated: ${fmt(sum)} / ${fmt(amount)} (Error: Exceeds total!)`;
+    } else {
+      display.style.color = 'var(--muted)';
+      display.textContent = `Allocated: ${fmt(sum)} / ${fmt(amount)} (Remaining: ${fmt(amount - sum)})`;
+    }
+  };
+
+  window.updateCatTotal = updateCatTotal;
+
+  const addRow = (catName = '', catAmt = '', personName = '') => {
+    const row = document.createElement('div');
+    row.innerHTML = `
+      <div class="category-split-controls">
+        <select class="split-cat-name" aria-label="Category">${MAIN_CATEGORIES.map(c => `<option value="${c}" ${c === catName ? 'selected' : ''}>${c}</option>`).join('')}</select>
+        <input type="number" class="split-cat-amt" aria-label="Category amount" placeholder="Amount" value="${esc(catAmt)}" min="0.01" step="0.01" required>
+        <button type="button" class="btn red remove-cat-row" aria-label="Remove category" style="padding:0 12px">×</button>
+      </div>
+      <div class="split-cat-person-wrap field" style="display:none">
+        <label>Who owes you this amount?</label>
+        <select class="split-cat-person" aria-label="Person who owes you">${personOptionsHTML(personName)}</select>
+        <input class="split-cat-new-person" aria-label="New person's name" placeholder="Enter new person's name" style="display:none">
+      </div>
+    `;
+    list.appendChild(row);
+    const category = row.querySelector('.split-cat-name');
+    const person = row.querySelector('.split-cat-person');
+    const newPerson = row.querySelector('.split-cat-new-person');
+    const syncPerson = () => {
+      const owes = category.value === 'Owe People';
+      const isNew = owes && person.value === '__new__';
+      row.querySelector('.split-cat-person-wrap').style.display = owes ? 'grid' : 'none';
+      person.disabled = !owes;
+      person.required = owes;
+      newPerson.disabled = !isNew;
+      newPerson.required = isNew;
+      newPerson.style.display = isNew ? 'block' : 'none';
+      updateSharePreview();
+    };
+    category.addEventListener('change', syncPerson);
+    person.addEventListener('change', syncPerson);
+    row.querySelector('.remove-cat-row').addEventListener('click', () => {
+      row.remove();
+      updateCatTotal();
+      updateSharePreview();
+    });
+    row.querySelector('.split-cat-amt').addEventListener('input', () => {
+      updateCatTotal();
+      updateSharePreview();
+    });
+    syncPerson();
+  };
+
+  if (tx && Array.isArray(tx.categoryAllocations) && tx.categoryAllocations.length) {
+    catToggle.checked = true;
+    catSection.style.display = 'block';
+    standardWrap.style.display = 'none';
+    tx.categoryAllocations.forEach(s => addRow(s.category, s.amount, s.person || ''));
+  } else   if (tx && tx.splits && tx.splits.length > 0) {
+    catToggle.checked = true;
+    catSection.style.display = 'block';
+    standardWrap.style.display = 'none';
+    const fullAmount = num(tx.amount);
+    const myShare = isCombinedExpense(tx) ? num(tx.myShare) : fullAmount;
+    const scale = myShare > 0 ? (fullAmount / myShare) : 1;
+    let scaled = tx.splits.map(s => ({ category: s.category, amount: Math.round(num(s.amount) * scale * 100) / 100 }));
+    const totalScaled = scaled.reduce((s, x) => s + x.amount, 0);
+    if (scaled.length) {
+      scaled[scaled.length - 1].amount = Math.round((scaled[scaled.length - 1].amount + (fullAmount - totalScaled)) * 100) / 100;
+    }
+    scaled.forEach(s => addRow(s.category, s.amount));
+  }
+
+  catToggle.addEventListener('change', () => {
+    if(catToggle.checked) {
+      catSection.style.display = 'block';
+      standardWrap.style.display = 'none';
+      if(list.children.length === 0) addRow();
+    } else {
+      catSection.style.display = 'none';
+      standardWrap.style.display = 'grid';
+      list.innerHTML = '';
+    }
+    updateCatTotal();
+    updateSharePreview();
+  });
+
+  addBtn.addEventListener('click', () => addRow());
+  amountInput.addEventListener('input', updateCatTotal);
+  updateCatTotal();
+}
+
+function categoryOwedAmount(){
+  const toggle = document.getElementById('catSplitToggle');
+  if(!toggle || !toggle.checked) return 0;
+  return Array.from(document.querySelectorAll('#catSplitList > div')).reduce((sum, row) => {
+    return sum + (row.querySelector('.split-cat-name').value === 'Owe People' ? num(row.querySelector('.split-cat-amt').value) : 0);
+  }, 0);
+}
+
+function updateSharePreview() {
+  const totalAmount = Math.max(0, num(document.querySelector('#formFields [name="amount"]').value) - categoryOwedAmount());
+  const totalShares = Number(document.getElementById('totalSharesInput').value) || 1;
+  const inputs = Array.from(document.querySelectorAll('.split-shares-input'));
+  const assignedShares = inputs.reduce((sum, inp) => sum + (Number(inp.value) || 0), 0);
+  const display = document.getElementById('myShareDisplay');
+
+  if(!display) return;
+
+  const myShares = totalShares - assignedShares;
+
+  if (myShares < 0) {
+    display.style.color = 'var(--red)';
+    display.textContent = `Error: Assigned shares (${assignedShares}) exceed total shares (${totalShares})!`;
+  } else if (totalShares === 0) {
+    display.textContent = `Your personal share: ₹0`;
+  } else {
+    const exactShareValue = totalAmount / totalShares;
+
+    let personTotal = 0;
+    inputs.forEach(inp => {
+      const shares = Number(inp.value) || 0;
+      personTotal += Math.round(exactShareValue * shares * 100) / 100;
+    });
+
+    const myAmount = Math.max(0, totalAmount - personTotal);
+
+    display.style.color = 'var(--green)';
+    display.innerHTML = `Your share: <b>${fmt(myAmount)}</b> (${myShares} share${myShares===1?'':'s'})<br>
+                         <span class="small" style="color:var(--muted)">Each share is worth ${fmt(exactShareValue)}</span>`;
+  }
+}
+
+function setupSplitLogic(tx) {
+  const splitToggle = document.getElementById('splitToggle');
+  const splitSection = document.getElementById('splitSection');
+  const amountLabel = document.getElementById('expenseAmountLabel');
+  const amountInput = document.querySelector('#formFields [name="amount"]');
+  const totalSharesInput = document.getElementById('totalSharesInput');
+  const addBtn = document.getElementById('addSplitPersonBtn');
+
+  if(!splitToggle || !splitSection) return;
+
+  const addSplitRow = (nameVal = '', sharesVal = 1) => {
+    const container = document.getElementById('splitPeopleList');
+    const row = document.createElement('div');
+    row.style.display = 'flex';
+    row.style.gap = '8px';
+    row.innerHTML = `
+      <input type="text" class="split-person-input" list="existingPeopleList" value="${esc(nameVal)}" placeholder="Person's name" style="flex:2">
+      <input type="number" class="split-shares-input" placeholder="Shares" value="${sharesVal}" min="1" step="1" style="flex:1">
+      <button type="button" class="btn red" onclick="this.parentNode.remove(); updateSharePreview();" style="padding:0 12px">×</button>
+    `;
+    container.appendChild(row);
+
+    const sharesInp = row.querySelector('.split-shares-input');
+    sharesInp.addEventListener('input', updateSharePreview);
+
+    updateSharePreview();
+  };
+
+  totalSharesInput.addEventListener('input', updateSharePreview);
+
+  const sharedPeople = tx && isCombinedExpense(tx) ? (tx.sharePeopleSplits || tx.peopleSplits.filter(p => p.source !== 'category')) : [];
+  if (sharedPeople.length) {
+    splitToggle.checked = true;
+    splitSection.style.display = 'block';
+    amountLabel.textContent = 'Total Amount Paid (₹)';
+    const sumShares = sharedPeople.reduce((s,p) => s + (Number(p.shares) || 0), 0);
+    totalSharesInput.value = tx.totalShares || (sumShares + (tx.myShares || (num(tx.myShare) > 0 ? 1 : 0)) || 2);
+    const list = document.getElementById('splitPeopleList');
+    list.innerHTML = '';
+    sharedPeople.forEach(p => addSplitRow(p.name, p.shares));
+    updateSharePreview();
+  }
+
+  splitToggle.addEventListener('change', () => {
+    const isSplit = splitToggle.checked;
+    splitSection.style.display = isSplit ? 'block' : 'none';
+    amountLabel.textContent = isSplit ? 'Total Amount Paid (₹)' : 'Amount (₹)';
+
+    const list = document.getElementById('splitPeopleList');
+    if(isSplit && list.children.length === 0) {
+      addSplitRow();
+    } else if (!isSplit) {
+      list.innerHTML = '';
+    }
+    updateSharePreview();
+  });
+
+  addBtn.addEventListener('click', () => addSplitRow());
+  amountInput.addEventListener('input', updateSharePreview);
+}
+
+function setupPersonSelect() {
+  const ps = document.getElementById('personSelect');
+  const np = document.getElementById('newPerson');
+  if (!ps || !np) return;
+  const sync = () => {
+    const isNew = ps.value === '__new__';
+    np.style.display = isNew ? 'block' : 'none';
+    np.required = isNew;
+    if(isNew && document.activeElement !== np) np.focus();
+  };
+  ps.addEventListener('change', sync);
+  sync();
+}
+
+function setupOwe(){
+  const cat = document.querySelector('#formFields [name=category]');
+  const wrap = document.getElementById('owePersonWrap');
+  const ps = document.getElementById('personSelect');
+  const np = document.getElementById('newPerson');
+  if(!cat || !wrap || !ps || !np) return;
+  const sync = () => {
+    const on = cat.value === 'Owe People' && !document.getElementById('catSplitToggle').checked;
+    wrap.style.display = on ? 'grid' : 'none';
+    ps.required = on;
+    ps.disabled = !on;
+    const isNew = on && ps.value === '__new__';
+    np.style.display = isNew ? 'block' : 'none';
+    np.required = isNew;
+    np.disabled = !isNew;
+  };
+  document.getElementById('catSplitToggle').addEventListener('change', sync);
+  cat.addEventListener('change', sync);
+  ps.addEventListener('change', sync);
+  sync();
+}
+
+function setupIncomeSource(tx){
+  const st  = document.querySelector('#formFields [name=sourceType]');
+  const sel = document.getElementById('incSourceSelect');
+  const ni  = document.getElementById('newIncSource');
+  if(!st || !sel || !ni) return;
+  const build = () => {
+    const type = st.value;
+    const known = sources().filter(s => s.type === type).map(s => s.name);
+    const cur = (tx && tx.sourceType === type) ? tx.sourceName : '';
+    const names = Array.from(new Set((cur ? [cur] : []).concat(known)));
+    sel.innerHTML = '<option value="">Choose ' + (type === 'Person' ? 'a person' : 'an organisation') + '</option>' +
+      names.map(n => '<option value="' + esc(n) + '"' + (n === cur ? ' selected' : '') + '>' + esc(n) + '</option>').join('') +
+      '<option value="__new__">＋ Add new ' + type.toLowerCase() + '</option>';
+  };
+  const sync = () => {
+    ni.style.display = sel.value === '__new__' ? 'block' : 'none';
+    ni.required = sel.value === '__new__';
+  };
+  st.addEventListener('change', () => { build(); sync(); });
+  sel.addEventListener('change', sync);
+  build();
+  sync();
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('show');
+  document.getElementById('entryForm').reset();
+  document.getElementById('formFields').innerHTML = '';
+  document.getElementById('editId').value = '';
+}
+
+function onSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  const type = form.dataset.type;
+  const o = {};
+  new FormData(form).forEach((v,k) => { o[k] = typeof v === 'string' ? v : ''; });
+
+  const editId = o.editId || '';
+  const oldTx = editId ? data.tx.find(x => x.id === editId) : null;
+  const amount = num(o.amount);
+  if(!(amount > 0)){ alert('Enter a valid amount.'); return; }
+
+  const date = o.date || today();
+  let notes = (o.notes || '').trim();
+  let t = null;
+
+  const pname = (o.personSelect === '__new__' ? (o.newPerson || '') : (o.personSelect || '')).trim();
+
+  /* ---- Split-with-people / category split: one combined transaction ---- */
+  if(type === 'expense' && (o.splitToggle === 'on' || o.catSplitToggle === 'on')) {
+    const cents = value => Math.round(num(value) * 100);
+    const amountCents = cents(amount);
+    let categoryAllocations = [];
+    const useCatSplit = o.catSplitToggle === 'on';
+    if (useCatSplit) {
+      const rows = Array.from(document.querySelectorAll('#catSplitList > div'));
+      let categoryCents = 0;
+      if (!rows.length) { alert('Add at least one category.'); return; }
+      for (const row of rows) {
+        const category = row.querySelector('.split-cat-name').value;
+        const rowCents = cents(row.querySelector('.split-cat-amt').value);
+        if (rowCents <= 0) { alert('Please enter a valid amount for all categories.'); return; }
+        const allocation = {category, amount: rowCents / 100};
+        if (category === 'Owe People') {
+          const selected = row.querySelector('.split-cat-person').value;
+          const name = (selected === '__new__' ? row.querySelector('.split-cat-new-person').value : selected).trim();
+          if (!name) { alert('Choose or enter a person for each Owe People category.'); return; }
+          allocation.person = name;
+        }
+        categoryAllocations.push(allocation);
+        categoryCents += rowCents;
+      }
+      if (categoryCents !== amountCents) {
+        alert(`The sum of category amounts (${fmt(categoryCents / 100)}) does not match the total amount (${fmt(amount)}).`);
+        return;
+      }
+    } else {
+      categoryAllocations = [{category: o.category || 'Other', amount: amountCents / 100}];
+    }
+
+    const directPeople = useCatSplit ? categoryAllocations.filter(s => s.category === 'Owe People')
+      .map(s => ({name:s.person, amount:s.amount, shares:0, source:'category'})) : [];
+    const directCents = directPeople.reduce((sum,p) => sum + cents(p.amount), 0);
+    const remainingCents = amountCents - directCents;
+    let sharedPeople = [];
+    let totalShares = 0, myShares = 0, myShareCents = remainingCents;
+    if (o.splitToggle === 'on') {
+      totalShares = Number(document.getElementById('totalSharesInput').value);
+      if (!Number.isInteger(totalShares) || totalShares < 1) { alert('Enter a valid total number of shares.'); return; }
+      const rows = Array.from(document.querySelectorAll('#splitPeopleList > div'));
+      let assignedShares = 0;
+      for (const row of rows) {
+        const name = row.querySelector('.split-person-input').value.trim();
+        const shares = Number(row.querySelector('.split-shares-input').value);
+        if (!name || !Number.isInteger(shares) || shares <= 0) { alert('Please provide a name and a valid number of shares.'); return; }
+        sharedPeople.push({name, shares});
+        assignedShares += shares;
+      }
+      myShares = totalShares - assignedShares;
+      if (myShares < 0) { alert('The assigned shares exceed the total number of shares.'); return; }
+      let allocatedCents = 0;
+      sharedPeople.forEach((p, i) => {
+        const shareCents = (myShares === 0 && i === sharedPeople.length - 1)
+          ? remainingCents - allocatedCents
+          : Math.min(remainingCents - allocatedCents, Math.round(remainingCents * p.shares / totalShares));
+        p.amount = shareCents / 100;
+        allocatedCents += shareCents;
+      });
+      myShareCents = remainingCents - allocatedCents;
+      if (!sharedPeople.length) { myShares = 0; totalShares = 0; }
+    }
+
+    let mySplits = [];
+    if (useCatSplit) {
+      const personalCategories = categoryAllocations.filter(s => s.category !== 'Owe People');
+      let allocatedCents = 0;
+      personalCategories.forEach((s, i) => {
+        const rowCents = (i === personalCategories.length - 1) ? myShareCents - allocatedCents
+          : Math.min(myShareCents - allocatedCents, Math.round(cents(s.amount) * myShareCents / remainingCents));
+        if (rowCents > 0) mySplits.push({category:s.category, amount:rowCents / 100});
+        allocatedCents += rowCents;
+      });
+    }
+
+    const combined = {
+      type: 'expense', title: (o.title || '').trim(), amount: amountCents / 100,
+      myShare: myShareCents / 100, account: o.account || 'bank', date: date,
+      due: o.due || '', notes: notes
+    };
+    if (useCatSplit) combined.categoryAllocations = categoryAllocations;
+    const allPeople = [...directPeople, ...sharedPeople];
+    if (allPeople.length) {
+      const grouped = new Map();
+      allPeople.forEach(p => {
+        const key = p.name.toLowerCase();
+        if (!grouped.has(key)) grouped.set(key, {...p});
+        else {
+          const saved = grouped.get(key);
+          saved.amount = (cents(saved.amount) + cents(p.amount)) / 100;
+          saved.shares += p.shares;
+        }
+      });
+      combined.peopleSplits = Array.from(grouped.values());
+      combined.sharePeopleSplits = sharedPeople;
+      combined.totalShares = totalShares;
+      combined.myShares = myShares;
+    }
+    if (mySplits.length) {
+      combined.splits = mySplits;
+      combined.category = 'Split';
+    } else {
+      combined.category = o.category || 'Other';
+    }
+    if (allPeople.length && myShareCents === 0) combined.category = 'Owe People';
+
+    combined.id = oldTx ? oldTx.id : uid();
+    combined.created = oldTx ? (oldTx.created || Date.now()) : Date.now();
+
+    if (oldTx) {
+      const i = data.tx.findIndex(x => x.id === oldTx.id);
+      if (i > -1) data.tx[i] = combined; else data.tx.push(combined);
+    } else {
+      data.tx.push(combined);
+    }
+
+    save();
+    closeModal();
+    document.getElementById('txSearch').value = '';
+    document.getElementById('txType').value = '';
+    document.getElementById('txFrom').value = '';
+    document.getElementById('txTo').value = '';
+    render();
+    goto('dashboard');
+    return;
+  }
+
+  /* ---- Standard transactions ---- */
+  if(type === 'expense'){
+    const cat = o.category || 'Other';
+    // Handle special categories that act as transfers
+    if(cat === 'UPI Lite Wallet'){
+      if(o.account === 'lite') { alert('Paid from account cannot be UPI Lite Wallet when loading it.'); return; }
+      t = {type:'transfer', title:(o.title || 'Loaded UPI Lite Wallet').trim(), amount:amount, from:o.account || 'bank', to:'lite', date:date, notes:notes};
+    } else if(cat === 'Converted into cash'){
+      if(o.account === 'cash') { alert('Paid from account cannot be Cash when converting to it.'); return; }
+      t = {type:'transfer', title:(o.title || 'Converted to Cash').trim(), amount:amount, from:o.account || 'bank', to:'cash', date:date, notes:notes};
+    } else if(cat === 'Owe People'){
+      if(!pname){ alert('Choose or enter the person\'s name.'); return; }
+      t = {type:'lent', person:pname, title:(o.title || '').trim() || 'Money given', category:'Owe People',
+           amount:amount, account:o.account || 'bank', date:date, due:o.due || '', notes:notes};
+    } else {
+      t = {type:'expense', title:(o.title || '').trim(), category:cat, amount:amount,
+           account:o.account || 'bank', date:date, due:o.due || '', notes:notes};
+    }
+  }
+  else if(type === 'refund'){
+    const cancelled = num(o.amountCancelled);
+    const charge = Math.max(0, cancelled - amount);
+    t = {type:'refund', title:(o.title || '').trim(), category:o.category || 'Other', amount:amount,
+         account:o.account || 'bank', date:date, notes:notes};
+    if(charge > 0){
+      t.amountCancelled = cancelled;
+      t.chargeAmount = charge;
+      t.chargeCategory = o.chargeCategory || 'Fees';
+    }
+  }
+  else if(type === 'income'){
+    const sname = (o.sourceSelect === '__new__' ? (o.newSource || '') : (o.sourceSelect || '')).trim();
+    if(!sname){ alert('Choose or enter the source name.'); return; }
+    t = {type:'income', sourceType:o.sourceType || 'Person', sourceName:sname, amount:amount,
+         account:o.account || 'bank', date:date, notes:notes};
+  }
+  else if(type === 'lent'){
+    if(!pname){ alert('Choose or enter the person\'s name.'); return; }
+    t = {type:'lent', person:pname, title:(o.title || '').trim(), category:o.category || 'Owe People',
+         amount:amount, account:o.account || 'bank', date:date, due:o.due || '', notes:notes};
+  }
+  else if(type === 'repayment'){
+    if(!pname){ alert('Choose or enter the person\'s name.'); return; }
+    const key = pname.toLowerCase();
+    const others = data.tx.filter(x => x.id !== editId);
+    const lent = others.reduce((s,x) => {
+      if(x.type === 'lent' && (x.person || '').trim().toLowerCase() === key) return s + num(x.amount);
+      if(isCombinedExpense(x)){
+        const p = x.peopleSplits.find(pp => pp.name.toLowerCase() === key);
+        if(p) return s + num(p.amount);
+      }
+      return s;
+    }, 0);
+    const ret  = others.filter(x => x.type === 'repayment' && (x.person || '').trim().toLowerCase() === key)
+                       .reduce((s,x) => s + num(x.amount), 0);
+    if(amount > lent - ret){
+      alert('Repayment cannot exceed the outstanding amount for this person (' + fmt(Math.max(0, lent - ret)) + ').');
+      return;
+    }
+    t = {type:'repayment', person:pname, amount:amount, account:o.account || 'bank', date:date, notes:notes};
+  }
+  else if(type === 'transfer'){
+    if(!o.from || !o.to || o.from === o.to){ alert('Choose two different accounts.'); return; }
+    t = {type:'transfer', amount:amount, from:o.from, to:o.to, date:date, notes:notes};
+  }
+
+  if(!t) return;
+
+  t.id = oldTx ? oldTx.id : uid();
+  t.created = oldTx ? (oldTx.created || Date.now()) : Date.now();
+
+  if(oldTx){
+    const i = data.tx.findIndex(x => x.id === oldTx.id);
+    if(i > -1) data.tx[i] = t; else data.tx.push(t);
+  } else {
+    data.tx.push(t);
+  }
+
+  if(t.type === 'lent' || t.type === 'repayment') selectedPerson = t.person;
+
+  save();
+  closeModal();
+
+  if(!oldTx){
+    document.getElementById('txSearch').value = '';
+    document.getElementById('txType').value = '';
+    document.getElementById('txFrom').value = '';
+    document.getElementById('txTo').value = '';
+  }
+
+  render();
+
+  if(t.type === 'lent' || t.type === 'repayment') goto('people');
+}
+
+function editTx(id){
+  const t = data.tx.find(x => x.id === id);
+  if(!t) return;
+  closeReceipt();
+  openModal(t.type, t.person || '', t);
+}
+function removeTx(id){
+  if(!confirm('Delete this transaction? This cannot be undone.')) return;
+  const t = data.tx.find(x => x.id === id);
+  data.tx = data.tx.filter(x => x.id !== id);
+  if(t && selectedPerson && (t.type === 'lent' || t.type === 'repayment')){
+    const stillThere = data.tx.some(x => (x.type === 'lent' || x.type === 'repayment') &&
+      (x.person || '').toLowerCase() === selectedPerson.toLowerCase());
+    if(!stillThere){
+      selectedPerson = null;
+      const box = document.getElementById('personDetail');
+      box.style.display = 'none';
+      box.innerHTML = '';
+    }
+  }
+  save();
+  render();
+  closeReceipt();
+}
+
+/* Pre-fill a refund modal from an existing expense (e.g. "I cancelled this order") */
+function recordRefundFromExpense(id){
+  const t = data.tx.find(x => x.id === id);
+  if(!t || t.type !== 'expense') return;
+  closeReceipt();
+  let cat = 'Other';
+  if(t.splits && t.splits.length) cat = t.splits[0].category;
+  else if(t.category && t.category !== 'Split' && t.category !== 'Owe People') cat = t.category;
+  
+  const prefill = {
+    title: 'Refund: ' + (t.title || txLabel(t)),
+    category: cat,
+    amountCancelled: personalExpenseAmount(t),
+    account: t.account,
+    date: today()
+  };
+  openModal('refund', '', prefill);
+}
+
+const PAGE_TITLES = {
+  dashboard:'Your money, clearly.',
+  transactions:'Transaction history',
+  people:'People who owe you',
+  accounts:'Your accounts',
+  analytics:'Understand your spending'
+};
+function goto(id){
+  if(id !== 'transactions') currentCategoryFilter = null;
+  document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.id === id));
+  document.querySelectorAll('.nav').forEach(n => n.classList.toggle('active', n.dataset.page === id));
+  setText('pageTitle', PAGE_TITLES[id] || '');
+  if(id === 'transactions') renderTxTable();
+}
+
+document.getElementById('clearCatFilter').onclick = () => {
+  currentCategoryFilter = null;
+  renderTxTable();
+};
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-open],[data-goto],[data-act],[data-filter],[data-page]');
+  if(!el) return;
+
+  if(el.dataset.open){ openModal(el.dataset.open); return; }
+  if(el.dataset.goto){ goto(el.dataset.goto); return; }
+
+  if(el.dataset.page) {
+    goto(el.dataset.page);
+    return;
+  }
+
+  if(el.dataset.filter) {
+    goto('transactions');
+    currentCategoryFilter = null;
+    document.getElementById('txSearch').value = '';
+    document.getElementById('txType').value = el.dataset.filter;
+    document.getElementById('txFrom').value = '';
+    document.getElementById('txTo').value = '';
+    renderTxTable();
+    return;
+  }
+
+  if (el.dataset.act === 'filter-month' || el.dataset.act === 'clear-month') {
+    selectedChartMonth = el.dataset.act === 'clear-month' || selectedChartMonth === el.dataset.month ? null : el.dataset.month;
+    renderDashboardCategories();
+    chart();
+    return;
+  }
+
+  if (el.dataset.act === 'filter-category') {
+    currentCategoryFilter = el.dataset.targetcat;
+    goto('transactions');
+    document.getElementById('txSearch').value = '';
+    document.getElementById('txType').value = '';
+    const month = el.dataset.month || '';
+    const [year, monthNumber] = month.split('-').map(Number);
+    document.getElementById('txFrom').value = month ? month + '-01' : '';
+    document.getElementById('txTo').value = month ? month + '-' + new Date(year, monthNumber, 0).getDate() : '';
+    renderTxTable();
+    return;
+  }
+
+  const act = el.dataset.act;
+
+  if(act === 'view'){ openReceipt(el.dataset.id); return; }
+  if(act === 'close-receipt'){ closeReceipt(); return; }
+  if(act === 'record-refund'){ recordRefundFromExpense(el.dataset.id); return; }
+
+  if(act === 'edit')        editTx(el.dataset.id);
+  else if(act === 'del')    removeTx(el.dataset.id);
+  else if(act === 'person') showPerson(el.dataset.name);
+  else if(act === 'add-lent')   openModal('lent', el.dataset.person);
+  else if(act === 'add-repay')  openModal('repayment', el.dataset.person);
+  else if(act === 'close-person'){
+    selectedPerson = null;
+    const box = document.getElementById('personDetail');
+    box.style.display = 'none';
+    box.innerHTML = '';
+  }
+});
+
+document.querySelectorAll('.nav').forEach(b => b.addEventListener('click', () => goto(b.dataset.page)));
+
+document.getElementById('closeModal').onclick  = closeModal;
+document.getElementById('cancelModal').onclick = closeModal;
+document.getElementById('entryForm').addEventListener('submit', onSubmit);
+
+document.getElementById('receiptModal').addEventListener('click', e => {
+  if(e.target === e.currentTarget) closeReceipt();
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key !== 'Escape') return;
+  if(document.getElementById('receiptModal').classList.contains('show')) closeReceipt();
+  else if(document.getElementById('modal').classList.contains('show')) closeModal();
+});
+
+['txSearch','txType','txFrom','txTo'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('input', renderTxTable);
+  el.addEventListener('change', renderTxTable);
+});
+
+document.getElementById('saveOpening').onclick = () => {
+  data.opening = {
+    bank: num(document.getElementById('openingBank').value),
+    lite: num(document.getElementById('openingLite').value),
+    cash: num(document.getElementById('openingCash').value)
+  };
+  save();
+  render();
+  alert('Opening balances saved.');
+};
+
+document.getElementById('exportBtn').onclick = () => {
+  const rows = [['date','type','title','person','source','sourceType','category','amount','myShare','splitPeople','amountCancelled','chargeAmount','chargeCategory','account','from','to','due','notes']];
+  data.tx.slice().sort(byDateDesc).forEach(t => {
+    rows.push([
+      t.date, t.type, t.title || '', t.person || '', t.sourceName || '', t.sourceType || '',
+      t.category || '', t.amount,
+      isCombinedExpense(t) ? t.myShare : '',
+      isCombinedExpense(t) ? t.peopleSplits.map(p => p.name + ':' + p.shares + ':' + p.amount).join('; ') : '',
+      t.amountCancelled || '', t.chargeAmount || '', t.chargeCategory || '',
+      t.account || '', t.from || '', t.to || '', t.due || '', t.notes || ''
+    ]);
+  });
+  const csv = rows.map(r => r.map(v => '"' + String(v == null ? '' : v).replace(/"/g,'""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'my-money-transactions.csv';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+};
+
+render();
+initCloud();
+</script></body></html>

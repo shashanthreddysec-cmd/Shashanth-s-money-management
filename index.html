@@ -44,6 +44,7 @@ button:not(.close):not(.icon-btn):active{transform:translateY(0) scale(.96)}
 .tx-stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
 .category-split-controls{display:flex;gap:8px}.category-split-controls select{flex:1.5;min-width:0}.category-split-controls input{flex:1;min-width:0}.split-cat-person-wrap{margin-top:8px}.split-cat-person-wrap label{color:var(--muted);font-size:12px}
 .cloud-card{margin:0 0 16px}.cloud-fields{display:flex;gap:8px;flex-wrap:wrap}.cloud-fields input{flex:1;min-width:180px}.cloud-fields button{white-space:nowrap}
+.cloud-nav{font-size:12px;color:var(--muted)}.cloud-nav:hover{color:var(--text)}.cloud-nav .cloud-state{font-size:10px;margin-left:5px}
 
 .tx-row[data-act="view"],tbody tr[data-act="view"]{cursor:pointer}
 tbody tr[data-act="view"]:hover{background:#ffffff0a}
@@ -117,13 +118,11 @@ button,input,select,textarea{touch-action:manipulation}
 <button class="nav" data-page="people">♙ &nbsp; People Owe Me</button>
 <button class="nav" data-page="accounts">▣ &nbsp; Accounts</button>
 <button class="nav" data-page="analytics">▥ &nbsp; Analytics</button>
+<button class="nav cloud-nav" id="cloudSyncButton" data-act="cloud-sync" title="Sync cloud data">☁ <span class="cloud-state">Sync</span></button>
 <div class="sidefoot">Private by default · Stored on this device</div>
 </aside>
 <main class="main">
 <header class="top"><div><div class="muted small">PERSONAL FINANCE</div><h1 id="pageTitle">Your money, clearly.</h1></div><button class="btn" id="exportBtn">↓ Export CSV</button></header>
-<section class="card cloud-card" id="cloudAuth" aria-label="Cloud sync">
-  <div class="section-title"><div><h2>Cloud sync</h2><div class="muted small" id="cloudStatus">Syncing automatically across devices.</div></div><span class="pill">Automatic</span></div>
-</section>
 
 <section class="page active" id="dashboard">
 <div class="grid hero-grid">
@@ -408,8 +407,8 @@ function load(){
   return d;
 }
 function setCloudStatus(message, error=false){
-  const el = document.getElementById('cloudStatus');
-  if(el){ el.textContent = message; el.style.color = error ? 'var(--red)' : ''; }
+  const el = document.getElementById('cloudSyncButton');
+  if(el){ el.title = message; el.style.color = error ? 'var(--red)' : ''; }
 }
 async function cloudSave(){
   if(!cloudClient || cloudSyncing) return;
@@ -425,7 +424,14 @@ async function cloudLoad(){
   const {data:row,error} = await cloudClient.from('money_data').select('payload').eq('user_id',PUBLIC_SYNC_ID).maybeSingle();
   if(error){ setCloudStatus('Cloud load failed: ' + error.message, true); return; }
   if(row && row.payload){
-    data = row.payload; localStorage.setItem(KEY, JSON.stringify(data)); render(); setCloudStatus('Loaded from cloud.');
+    const local = data || fresh();
+    const cloud = row.payload;
+    const mergedTx = [...(cloud.tx || [])];
+    const known = new Set(mergedTx.map(t => t.id));
+    (local.tx || []).forEach(t => { if(!known.has(t.id)){ mergedTx.push(t); known.add(t.id); } });
+    data = Object.assign(fresh(), cloud, {tx: mergedTx});
+    data.opening = Object.assign({}, local.opening || {}, cloud.opening || {});
+    localStorage.setItem(KEY, JSON.stringify(data)); render(); await cloudSave(); setCloudStatus('Loaded and merged cloud data.');
   } else {
     await cloudSave();
   }
@@ -1917,6 +1923,7 @@ document.addEventListener('click', e => {
 
   const act = el.dataset.act;
 
+  if(act === 'cloud-sync'){ cloudLoad(); return; }
   if(act === 'view'){ openReceipt(el.dataset.id); return; }
   if(act === 'close-receipt'){ closeReceipt(); return; }
   if(act === 'record-refund'){ recordRefundFromExpense(el.dataset.id); return; }

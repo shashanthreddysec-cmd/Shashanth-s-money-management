@@ -10,6 +10,6 @@ This is a static browser app that can sync transactions across devices with Supa
 4. Add the project URL and anon key from Supabase settings.
 5. Deploy the folder with GitHub Pages, Netlify, or Vercel.
 
-When the app opens, create an account or sign in under “Cloud sync”. Your transactions are stored in the private `money_data` row belonging to that Supabase account, so the same data appears on another device after signing in with the same account.
+The app now syncs automatically without sign-in. Run the updated `supabase/schema.sql` once more in Supabase SQL Editor, then reload the app. This uses one shared public sync row, so do not store sensitive financial information in this no-login mode.
 
 The service role key must never be placed in this project. Only the browser anon key belongs in `supabase-config.js`.

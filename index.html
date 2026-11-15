@@ -122,9 +122,7 @@ button,input,select,textarea{touch-action:manipulation}
 <main class="main">
 <header class="top"><div><div class="muted small">PERSONAL FINANCE</div><h1 id="pageTitle">Your money, clearly.</h1></div><button class="btn" id="exportBtn">↓ Export CSV</button></header>
 <section class="card cloud-card" id="cloudAuth" aria-label="Cloud sync">
-  <div class="section-title"><div><h2>Cloud sync</h2><div class="muted small" id="cloudStatus">Sign in to use this data on every device.</div></div><span id="cloudUser" class="pill" hidden></span></div>
-  <div class="cloud-fields" id="cloudFields"><input id="cloudEmail" type="email" placeholder="Email address" autocomplete="email"><input id="cloudPassword" type="password" placeholder="Password" autocomplete="current-password"><button class="btn primary" id="cloudSignIn">Sign in</button><button class="btn" id="cloudSignUp">Create account</button></div>
-  <div class="actions" id="cloudSignedIn" hidden><button class="btn" id="cloudSyncNow">Sync now</button><button class="btn red" id="cloudSignOut">Sign out</button></div>
+  <div class="section-title"><div><h2>Cloud sync</h2><div class="muted small" id="cloudStatus">Syncing automatically across devices.</div></div><span class="pill">Automatic</span></div>
 </section>
 
 <section class="page active" id="dashboard">
@@ -238,7 +236,7 @@ let currentCategoryFilter = null;
 let selectedChartMonth = null;
 const cloudClient = window.SUPABASE_CONFIG && window.supabase
   ? window.supabase.createClient(window.SUPABASE_CONFIG.url, window.SUPABASE_CONFIG.anonKey) : null;
-let cloudUser = null;
+const PUBLIC_SYNC_ID = '00000000-0000-0000-0000-000000000001';
 let cloudSyncing = false;
 
 function fresh(){ return {version:2, opening:{bank:0,lite:0,cash:0}, tx:[]}; }
@@ -413,24 +411,18 @@ function setCloudStatus(message, error=false){
   const el = document.getElementById('cloudStatus');
   if(el){ el.textContent = message; el.style.color = error ? 'var(--red)' : ''; }
 }
-function cloudUpdateUI(){
-  const fields = document.getElementById('cloudFields'), signed = document.getElementById('cloudSignedIn'), badge = document.getElementById('cloudUser');
-  if(!fields || !signed) return;
-  fields.hidden = !!cloudUser; signed.hidden = !cloudUser; badge.hidden = !cloudUser;
-  if(cloudUser){ badge.textContent = cloudUser.email || 'Signed in'; setCloudStatus('Synced data is available on every device.'); }
-}
 async function cloudSave(){
-  if(!cloudClient || !cloudUser || cloudSyncing) return;
+  if(!cloudClient || cloudSyncing) return;
   cloudSyncing = true;
-  const {error} = await cloudClient.from('money_data').upsert({user_id:cloudUser.id,payload:data,updated_at:new Date().toISOString()});
+  const {error} = await cloudClient.from('money_data').upsert({user_id:PUBLIC_SYNC_ID,payload:data,updated_at:new Date().toISOString()});
   cloudSyncing = false;
   if(error) setCloudStatus('Cloud sync failed: ' + error.message, true);
   else setCloudStatus('Saved to cloud just now.');
 }
 async function cloudLoad(){
-  if(!cloudClient || !cloudUser) return;
-  setCloudStatus('Loading your cloud data…');
-  const {data:row,error} = await cloudClient.from('money_data').select('payload').eq('user_id',cloudUser.id).maybeSingle();
+  if(!cloudClient) return;
+  setCloudStatus('Loading shared cloud data…');
+  const {data:row,error} = await cloudClient.from('money_data').select('payload').eq('user_id',PUBLIC_SYNC_ID).maybeSingle();
   if(error){ setCloudStatus('Cloud load failed: ' + error.message, true); return; }
   if(row && row.payload){
     data = row.payload; localStorage.setItem(KEY, JSON.stringify(data)); render(); setCloudStatus('Loaded from cloud.');
@@ -440,29 +432,7 @@ async function cloudLoad(){
 }
 async function initCloud(){
   if(!cloudClient){ setCloudStatus('Cloud sync is not configured.'); return; }
-  cloudClient.auth.onAuthStateChange(async (_event, session) => {
-    cloudUser = session && session.user ? session.user : null;
-    cloudUpdateUI();
-    if(cloudUser) await cloudLoad();
-  });
-  const {data:sessionData} = await cloudClient.auth.getSession();
-  cloudUser = sessionData.session && sessionData.session.user ? sessionData.session.user : null;
-  cloudUpdateUI();
-  if(cloudUser) await cloudLoad();
-  document.getElementById('cloudSignIn').onclick = async () => {
-    const email = document.getElementById('cloudEmail').value.trim(), password = document.getElementById('cloudPassword').value;
-    if(!email || !password){ setCloudStatus('Enter your email and password.', true); return; }
-    const {error} = await cloudClient.auth.signInWithPassword({email,password});
-    if(error) setCloudStatus(error.message, true);
-  };
-  document.getElementById('cloudSignUp').onclick = async () => {
-    const email = document.getElementById('cloudEmail').value.trim(), password = document.getElementById('cloudPassword').value;
-    if(!email || password.length < 6){ setCloudStatus('Use an email and a password of at least 6 characters.', true); return; }
-    const {error} = await cloudClient.auth.signUp({email,password});
-    if(error) setCloudStatus(error.message, true); else setCloudStatus('Account created. Check your email if confirmation is enabled.');
-  };
-  document.getElementById('cloudSyncNow').onclick = cloudSave;
-  document.getElementById('cloudSignOut').onclick = () => cloudClient.auth.signOut();
+  await cloudLoad();
 }
 function save(){ localStorage.setItem(KEY, JSON.stringify(data)); cloudSave(); }
 
